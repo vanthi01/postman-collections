@@ -1,0 +1,1305 @@
+{
+  "info": {
+    "_postman_id": "ce021e39-fadd-42f9-b3a2-e35543dd3012",
+    "name": "PImarketing API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "_postman_id": "d48dbb9b-b1bf-46e3-8560-26d907bd1273",
+      "name": "campingnavigator",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "b738b45f-88bd-42b2-9bcf-195b5b92d5b2",
+          "name": "SaveProfile_campingnavigator_T01_ExitIntent",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Collections\": [\r\n    {\r\n      \"BrandId\": \"1\",\r\n      \"BrandName\": \"Campingnavigator\",\r\n      \"CollectionId\": \"Subscriptions\",\r\n      \"ExitIntent\": \"1\",\r\n      \"OptOut\": \"0\",\r\n      \"SubProfileId\": \"1\",\r\n      \"SubscriptionDateTime\": \"2017-07-04 00:00:00\",\r\n      \"TypeId\": \"1\",\r\n      \"TypeName\": \"Newsletter\"\r\n    }\r\n  ],\r\n  \"CountryCode\": \"NL\",\r\n\"Database\" :\"{{campingnavigator}}\",\r\n\t\"Email\":\"jos1@pimarketing.nl\",\r\n  \"Language\": \"NL\"\r\n}"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "9935ca8d-300e-4336-9246-99d0c2a3e16b",
+          "name": "SaveProfile_campingnavigator_T02_DownloadGuide",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Collections\": [\r\n    {\r\n      \"BrandId\": \"1\",\r\n      \"BrandName\": \"Campingnavigator\",\r\n      \"CollectionId\": \"Subscriptions\",\r\n      \"LeadMagnet\": \"1\",\r\n      \"OptOut\": \"0\",\r\n      \"SubProfileId\": \"1\",\r\n      \"SubscriptionDateTime\": \"2017-07-04 00:00:00\",\r\n      \"TypeId\": \"1\",\r\n      \"TypeName\": \"Newsletter\"\r\n    }\r\n  ],\r\n  \"CountryCode\": \"NL\",\r\n\"Database\" :\"{{campingnavigator}}\",\r\n\t\"Email\":\"jos1@pimarketing.nl\",\r\n  \"Language\": \"NL\"\r\n}"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "8390d6b9-f6fe-45ff-b82a-559add39d0f6",
+          "name": "SaveProfile_campingnavigator_T03_BestDealPlus",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Collections\": [\r\n    {\r\n      \"CollectionId\": \"BestDealPlus\",\r\n      \"SubProfileId\": \"fbcba9c7-910b-424d-bb65-1e4c38b147ce\",\r\n      \"CreatedDateTime\": \"2017-07-04 09:18\",\r\n      \"CampingName\": \"Simmerschmelz\",\r\n      \"CampingRegion\": \"Centre\",\r\n      \"CampingEmail\": \"info@simmerschmelz.com\",\r\n      \"CampingImage\": \"/userdata/afbeeldingen/a622f1f7-270e-4239-b289-db91b513bec7.jpg\",\r\n      \"Title\": \"Beleef de Tour de France op Simmerschmelz\",\r\n      \"Description\": \"Verblijf 2e nacht gratis op Camping Simmerschmelz\",\r\n      \"ArrivalDate\": \"2017-07-04\",\r\n      \"Nights\": \"1\",\r\n      \"Price\": \"27,00\",\r\n      \"DiscountPercentage\": \"-50\",\r\n      \"Included1\": \"Verblijf 2 nachten met 2 personen op een kampeerplaats met eigen tent, caravan of camper\",\r\n      \"Included2\": \"Verblijf 2 nachten met 2 personen op een kampeerplaats met eigen tent, caravan of camper\",\r\n      \"Included3\": \"Verblijf 2 nachten met 2 personen op een kampeerplaats met eigen tent, caravan of camper\",\r\n      \"Included4\": \"Verblijf 2 nachten met 2 personen op een kampeerplaats met eigen tent, caravan of camper\",\r\n      \"Included5\": \"Verblijf 2 nachten met 2 personen op een kampeerplaats met eigen tent, caravan of camper\",\r\n      \"AdditionalCost\": \"30\",\r\n      \"CampingPhone\": \"307072\",\r\n      \"Adults\": 2,\r\n      \"Children\": 0,\r\n      \"CorrespondenceLanguage\": \"nl-NL\"\r\n    }\r\n  ],\r\n  \"FirstName\": \"Jos\",\r\n\"Database\" :\"{{campingnavigator}}\",\r\n\t\"Email\":\"jos1@pimarketing.nl\",\r\n  \"LastName\": \"Meiling\",\r\n  \"PhoneNumber\": \"0624791468\"\r\n}"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "e44181dd-cf6b-4946-a554-0db76c3e5c9b",
+          "name": "SaveProfile_campingnavigator_T04_Search",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Collections\": [\r\n    {\r\n      \"CollectionId\": \"Searches\",\r\n      \"CreatedDateTime\": \"2017-07-04 09:18\",\r\n      \"CountryName\": \"Oostenrijk\",\r\n      \"AreaName\": \"Karinthi\u00eb\",\r\n      \"LocationName\": \"D\u00f6briach\",\r\n      \"CampingName\": \"Komfort-Campingpark Burgstaller\",\r\n      \"CampingLink\": \"www.burgstaller.co.at\",\r\n      \"SearchLink\": \"http://campingnavigator.com/nl/campings-oostenrijk/karinthie/komfort-campingpark-burgstaller/\",\r\n      \"CampingImage\": \"http://campingnavigator.com/image-data/305894/komfort-campingpark-burgstaller-promotie-beeld-komfort-campingpark-burgstaller.jpg\",\r\n      \"CountryCode\": \"AT\",\r\n      \"Language\": \"NL\",\r\n      \"RegionLink\": \"/nl/campings-oostenrijk/karinthie/\",\r\n      \"CountryLink\": \"/nl/campings-oostenrijk/\",\r\n      \"RegionImage\": \"/userdata/afbeeldingen/d47458e1-ef45-434b-b470-2488e60e3671.jpg\",\r\n      \"CountryImage\": \"/userdata/afbeeldingen/fca547e8-64af-4eb8-a827-aea3365ab577.jpg\"\r\n    }\r\n  ],\r\n\"Database\" :\"{{campingnavigator}}\",\r\n\t\"Email\":\"jos1@pimarketing.nl\",\r\n  \"LatestCountry\": \"AT\"\r\n}"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "06efbc53-de23-491f-bc98-a6559b9a206b",
+          "name": "SaveProfile_campingnavigator_T05_CreateProfle",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "ed32d1da-cf1a-44d4-a207-2c650f48886e",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"IsSuccess = true\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.IsSuccess).to.eql(true);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"Email\": \"jos@pimarketing.nl\",\r\n\t\"Database\" :\"{{bookingmonkey}}\",\r\n\t\"Currency\":\"EUR\",\r\n\t\"MailLanguage\": \"NL\"\r\n}"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "024e768e-ec6d-4936-99df-33d72e3ddcd7",
+          "name": "SaveProfile_campingnavigator_T06_UpdateProfile",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"Email\": \"jos@pimarketing.nl\",\r\n\t\"Database\" :\"{{bookingmonkey}}\",\r\n\t\"Currency\":\"EUR\",\r\n\t\"MailLanguage\": \"NL\"\r\n}"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "3746b3a5-990b-439e-94d3-41a346094d56",
+          "name": "SaveProfile_campingnavigator_T07_GetProfile",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"Email\": \"jos@pimarketing.nl\",\r\n\t\"Database\" :\"{{bookingmonkey}}\",\r\n\t\"ReturnProfile\" : 1\r\n}"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "591ae798-30b8-4382-a6df-91afa199f3d3",
+      "name": "bookingmonkey",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "34cd7b6c-25e4-4742-8fa0-58c977a111be",
+          "name": "SaveProfile_bookingmonkey_T01_CreateProfile",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n \"Database\": \"{{bookingmonkey}}\",\r\n \"Email\": \"jos1@pimarketing.nl\",\r\n \"PriceUpdates\": 1,\r\n \"Language\": \"EN\",\r\n \"Newsletter\": 1,\r\n \"LatestCountry\": \"ES\"\r\n }"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "d5be065f-7c6c-4cf1-9b3b-83598cc96d5f",
+          "name": "SaveProfile_bookingmonkey_T02_InsertSearch",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n \"Database\": \"{{bookingmonkey}}\",\r\n \"Email\": \"jos1@pimarketing.nl\",\r\n \"LatestCountry\": \"ES\",\r\n \"Collections\": [\r\n {\r\n \"CollectionId\": \"Searches\",\r\n \"PickupDateTime\": \"2017-07-07 09:00\",\r\n \"PickupLocation\": \"Barcelona flughafen\",\r\n \"PickupLocationId\": 751,\r\n \"ReturnDateTime\": \"2017-07-14 09:00\",\r\n \"ReturnLocation\": \"Barcelona flughafen\",\r\n \"ReturnLocationId\": 751,\r\n \"SearchUrl\": \"https://www.holidaycars.com/live/?utm_medium=[utm_medium]&utm_source=[utm_source]&utm_campaign=[utm_campaign]&utm_content=website-search&currency=DKK&responsive=1&promo=activatie10&language=DE&source=cars&pickupdatetime=2017-07-07T09:00:00&returndatetime=2017-07-14T09:00:00&countrycode=DE&bmp=751&bmd=751\",\r\n \"SearchDateTime\": \"2017-07-04 09:41\",\r\n \"CountryCode\": \"ES\",\r\n \"Language\": \"de\"\r\n }\r\n ]\r\n }"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "31c2c3cb-17ec-45f8-b372-819123d1fb5d",
+          "name": "SaveProfile_bookingmonkey_T03_InsertQuote",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n \"AS\": 3,\r\n \"ASC\": 1,\r\n \"ASCurl\": \"https://www.holidaycars.com/live/?currency=EUR&responsive=1&promo=activatie10&language=EN&source=cars&pickupdatetime=2017-07-07T09:00:00&returndatetime=2017-07-14T09:00:00&countrycode=DE&bmp=751&bmd=751&email=jos@pimarketing.nl&firstname=Jos&lastname=Meiling&gender=m#deeplink/a0f584fb-c7a6-4966-8a46-0d7509b5a935/d84f2642-dfa2-4c41-8337-68f617c06caa/3_MBMR_1565/ok.gif\",\r\n \"Collections\": [\r\n {\r\n \"ASCUrl\": \"https://www.holidaycars.com/live/?currency=EUR&responsive=1&promo=activatie10&language=EN&source=cars&pickupdatetime=2017-07-07T09:00:00&returndatetime=2017-07-14T09:00:00&countrycode=DE&bmp=751&bmd=751&email=jos@pimarketing.nl&firstname=Jos&lastname=Meiling&gender=m#deeplink/a0f584fb-c7a6-4966-8a46-0d7509b5a935/d84f2642-dfa2-4c41-8337-68f617c06caa/3_MBMR_1565/ok.gif\",\r\n \"Brand\": \"OK\",\r\n \"CarCategory\": \"Minicategory, 2/3 Doors, Manual Transmission, A/C\",\r\n \"CarImage\": \"https://holidaycars.azureedge.net/image/car/500_300.jpg\",\r\n \"CarName\": \"Fiat 500\",\r\n \"CollectionId\": \"Quotes\",\r\n \"Language\": \"EN\",\r\n \"PickupDateTime\": \"2017-07-07 09:00:00\",\r\n \"PickupLocation\": \"Barcelona airport\",\r\n \"Price\": \"154.76 \u20ac\",\r\n \"QuoteDateTime\": \"2017-07-05 09:10:47\",\r\n \"ReturnDateTime\": \"2017-07-14 09:00:00\",\r\n \"ReturnLocation\": \"Barcelona airport\",\r\n \"SubProfileId\": 97552247\r\n }\r\n ],\r\n \"Country\": \"DE\",\r\n \"Database\": \"{{bookingmonkey}}\",\r\n \"Email\": \"jos1@pimarketing.nl\",\r\n \"Firstname\": \"Jos\",\r\n \"Gender\": \"Male\",\r\n \"Language\": \"EN\",\r\n \"Lastname\": \"Meiling\",\r\n \"LatestCountry\": \"ES\",\r\n \"ReturnProfile\": 0\r\n }"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "2618c1b3-9a74-43ac-b567-7ed2476ab768",
+          "name": "SaveProfile_bookingmonkey_T04_UpdateProfileASC",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n \"Database\": \"{{bookingmonkey}}\",\r\n \"Email\": \"jos1@pimarketing.nl\",\r\n \"ASC\": 0\r\n }"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "08690842-3a8d-4752-ac68-b01f071c435e",
+          "name": "SaveProfile_bookingmonkey_T05_UpdateProfileMyProfile",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Database\": \"{{bookingmonkey}}\",\r\n  \"Email\": \"jos2@pimarketing.nl\",\r\n \"Language\": \"NL\",\r\n \"Password\": \"f52ff6c83683aaffc7e21d6df44e84a346332fdcacf2a9138dc1899bdfcb5dbd\",\r\n \"ReturnProfile\" : \"1\"\r\n }"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "5da31857-f363-48a9-9506-1a1de35614ce",
+          "name": "SaveProfile_bookingmonkey_T06_UpdateProfileResetPassword",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Database\": \"{{bookingmonkey}}\",\r\n \"Email\": \"jos2@pimarketing.nl\",\r\n \"PasswordReset\": 1\r\n }"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "394b6379-4327-42a8-873c-a825a15bc68b",
+          "name": "SaveProfile_bookingmonkey_T07_UpdateProfileActivateAccount",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Database\": \"{{bookingmonkey}}\",\r\n \"Email\": \"jos2@pimarketing.nl\",\r\n \"PasswordReset\": 3\r\n }"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "f2c299ad-8936-4b6b-b328-ac260302630a",
+          "name": "SaveProfile_bookingmonkey_T08_UpdateProfile",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"Email\": \"jos@pimarketing.nl\",\r\n\t\"Database\" :\"{{bookingmonkey}}\",\r\n\t\"Currency\":\"EUR\",\r\n\t\"MailLanguage\": \"NL\"\r\n}"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "b7dfc518-f0b1-4ac0-ac65-d9846da493d0",
+          "name": "SaveProfile_bookingmonkey_T09_GetProfile",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"Email\": \"jos@pimarketing.nl\",\r\n\t\"Database\" :\"{{bookingmonkey}}\",\r\n\t\"ReturnProfile\" : 1\r\n}"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "5f0144fb-1619-48b2-89bc-c04f2d2b291c",
+      "name": "CompanyGolfClub",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "ae0dc1e5-87c5-4f81-97ac-922d5487bff3",
+          "name": "SaveProfile_CompanyGolfClub_T01_CreateProfile",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "42a284d9-9667-4861-8f53-fd8ef4ce4332",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"IsSuccess TRUE\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.IsSuccess).to.eql(true);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\"Voornaam\": \"Jos\",\r\n\"Achternaam\": \"Meiling\",\r\n\"Bedrijfsnaam\": \"PI Marketing\",\r\n\"Database\" :\"{{thecompanygolfclub}}\",\r\n\t\"Email\":\"jos1@pimarketing.nl\",\r\n\"Mobielnummer\": \"0624791468\",\r\n\"LaatsteEventNaam\": \"Golf aan de kade\",\r\n\"LaatsteEventLink\": \"http://thecompanygolfclub.com/home\",\r\n\"LaatsteEventDatum\": \"2017-05-04\",\r\n\"LaatsteEventTijd\": \"12:00\",\r\n\"Trigger\" : \"2\"\r\n}"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "eacfeda6-c556-4707-8f85-ce995a3fbb1b",
+          "name": "SaveProfile_CompanyGolfClub_T02_UpdateProfileNewsletter",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\"Database\" :\"{{thecompanygolfclub}}\",\r\n\t\"Email\":\"jos1@pimarketing.nl\",\r\n\"Nieuwsbrief\": \"1\"\r\n}"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "fe307706-3e9b-4ffb-8248-768431da2eb6",
+          "name": "SaveProfile_CompanyGolfClub_T03_UpdateEventRegistration",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\"Database\" :\"{{thecompanygolfclub}}\",\r\n\t\"Email\":\"jos1@pimarketing.nl\",\r\n\"Voornaam\": \"Jos\",\r\n\"Achternaam\": \"Meiling\",\r\n\"Bedrijfsnaam\": \"PI Marketing\",\r\n\"Mobielnummer\": \"0624791468\",\r\n\"Lid\": \"1\",\r\n\"Membertype\": \"Premium\"\r\n}"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "25e7295f-d420-4147-a6d4-265ad44c5c7d",
+          "name": "SaveProfile_CompanyGolfClub_T04_UpdateEventRegistrationPB",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\"Database\" :\"{{thecompanygolfclub}}\",\r\n\t\"Email\":\"jos1@pimarketing.nl\",\r\n\"Membertype\": \"Proeflidmaatschap bevestigd\"\r\n}\r\n\r\n"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "528dcf8f-79a3-42e8-8e63-ddedbdbe1576",
+          "name": "SaveProfile_CompanyGolfClub_T05_UpdateTestMembership",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\"Database\" :\"{{thecompanygolfclub}}\",\r\n\"Voornaam\": \"Jos\",\r\n\"Achternaam\": \"Meiling\",\r\n\"Bedrijfsnaam\": \"PI Marketing\",\r\n\"Email\": \"jos1@pimarketing.nl\",\r\n\"Mobielnummer\": \"0624791468\",\r\n\"Membertype\": \"Proeflidmaatschap\",\r\n\"Branche\": \"Travel\"\r\n}"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "654b7b8f-a7ad-4526-b0bb-c703486aaa6f",
+          "name": "SaveProfile_CompanyGolfClub_T06_UpdateTestMembershipConfirmation",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\"Database\" :\"{{thecompanygolfclub}}\",\r\n\"Email\": \"jos1@pimarketing.nl\",\r\n\"Membertype\": \"Proeflidmaatschap bevestigd\"\r\n}\r\n\r\n"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "3e52caac-36bf-49c9-845a-6e10b306c482",
+          "name": "SaveProfile_CompanyGolfClub_T07_UpdateRegistration",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\"Email\": \"jos@pimarketing.nl\",\r\n\"Voornaam\": \"Jos\",\r\n\"Achternaam\": \"Meiling\",\r\n\"Mobielnummer\": \"0624791468\",\r\n\"Aanvraag\": \"Lidmaatschap pro\",\r\n\"Trigger\" : \"1\",\r\n\"Database\": \"{{thecompanygolfclub}}\"\r\n}"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "4bd17cd7-3bc3-4658-b4ec-24ac765b5ae0",
+          "name": "SaveProfile_CompanyGolfClub_T08_UpdateReservation",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\"Email\": \"jos1@pimarketing.nl\",\r\n\"Reservering\" : \"1\",\r\n\"Database\": \"{{thecompanygolfclub}}\"\r\n}"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "54369768-ea31-42f3-b3a5-665d6d801717",
+          "name": "SaveProfile_CompanyGolfClub_T09_UpdateProfile",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"Email\": \"jos@pimarketing.nl\",\r\n\t\"Database\" :\"{{thecompanygolfclub}}\",\r\n\t\"Currency\":\"EUR\",\r\n\t\"MailLanguage\": \"NL\"\r\n}"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "9cb21ad0-44fc-4e8b-8266-e1ec51ae7ef6",
+          "name": "SaveProfile_CompanyGolfClub_T10_GetProfile",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"Email\": \"jos@pimarketing.nl\",\r\n\t\"Database\" :\"{{thecompanygolfclub}}\",\r\n\t\"ReturnProfile\" : 1\r\n}"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "5a13b094-4758-49d0-bebe-9612e8b28f0b",
+      "name": "vacanceselect",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "f5b1b043-f5b5-446f-bdf2-ce95aba17e21",
+          "name": "SaveProfile_VacanceSelect_T01_InsertBookAbandonExitIntent",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\t\"Database\" :\"{{vacanceselect}}\",\r\n\t\"Email\":\"jos1@pimarketing.nl\",\r\n\"Language\":\"NL\",\r\n\"MyVSStatus\": 1,\r\n\"MyVSRequestUrl\": \"https://www.vacanceselect.com/nl/mijn-vacanceselect/accountrequestactiveren?requestid=jddF2%2BLiWX1u2uoJgr6EMoIzQ9lp51IUg4MGF6mZ%2BvP4HLSQox8TJG5b9Y8AP9zF6Zb5anGHbGZSS5jUowTIkI5l7FfW0YqYoPcBffwAteYMr2ZEQs9bnzG81IT9rX%2BiC3o7U36scnjb8MiFvEIXI42B84JrBUuII2BAC5ySjhbH%2F0dI8msiTBRm9etcmxeVP25CcpPVsNTL7ny3jR91VhmGvi%2FU2pQNejYey5gRu41kM5y6L5Xl%2BFBQf65vfGGgBDtPSMwkuAo%2Fg5QbpYVo0Kg452F3ldPqrf9Rq762jf0%3D\",\r\n\"Collections\":[\r\n{\r\n\"CollectionId\": \"BookAbandons\",\r\n\"CreatedDateTime\": \"2017-07-04 10:47\",\r\n\"ArrivalDate\": \"2017-07-16\",\r\n\"DepartureDate\": \"2017-07-23\",\r\n\"Duration\": 7,\r\n\"Persons\": 2, \r\n\"LocationId\": 51514,\r\n\"LocationName\": \"Camping La Croix du Vieux Pont\",\r\n\"LocationGroup\": \"Camping\",\r\n\"LocationImage\": \"https://vacanceselect-528047.c.cdn77.org/mediavlg/photo/orgineel/f-02290_1_001.jpg\",\r\n\"LocationLink\": \"https://www.vacanceselect.com/nl/camping/frankrijk/parijs-omgeving/camping-la-croix-du-vieux-pont/51514\",\r\n\"Booklink\": \"https://www.vacanceselect.com/nl/boeken/stap-1/15268/c80e5712cab24e9f8a599a33a1e0534e\",\r\n\"BookLinkExpireDateTime\": \"2017-07-25 08:46\",\r\n\"ProductId\": 15268,\r\n\"ProductName\": \"Stacaravan 2 slk\",\r\n\"Latitude\": \"49.40489\",\r\n\"Longitude\": \"3.13308\",\r\n\"CountryCode\": \"F\",\r\n\"CountryName\": \"Frankrijk\",\r\n\"AreaCode\": \"PA\",\r\n\"AreaName\": \"Parijs & Omgeving\",\r\n\"CityName\": \"Berny-Rivi\u00e8ra\",\r\n\"SubProfileId\": \"c80e5712cab24e9f8a599a33a1e0534e\",\r\n\"PriceTotal\": \"EUR 1016,58\",\r\n\"Brand\": \"Vacanceselect\",\r\n\"Culture\": \"nl-NL\",\r\n\"Origin\": \"Exit-intent\"\r\n}\r\n]\r\n}"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "664357ba-6f81-4b0d-be65-f97920006683",
+          "name": "SaveProfile_VacanceSelect_T02_InsertLeadMagnet",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"Database\" :\"{{vacanceselect}}\",\r\n\t\"Email\":\"jos1@pimarketing.nl\",\r\n\"Unsubscribed\":0,\r\n\"Language\":\"NL\",\r\n\"LM\":1,\r\n\"MyVSStatus\": 1,\r\n\"MyVSRequestUrl\": \"https://www.vacanceselect.com/nl/mijn-vacanceselect/accountrequestactiveren?requestid=LWaNE0t8bT2P01%2Fx%2BE6NhtI7qzPOhl9gwdkDzrd1USgWIBNWfUvzvc0RVPY%2FhbnS0z2R28bfpO8ArZksII8quL4fgdEx5I9g5M6DI%2FvmgQrNmb6C2LVxyLxKGg%2Fbo02lMKNddVBlpRpQA8mV%2BNkxUdDDFkuUAij76QRU%2B2h3hmMSJv1GZ2a2yBsAzZ2r44EUjg5PLjf42bp5MF3EpDLYYjoLzdysQEySu36pPbEzY8SW60zm8rquh27I%2BFoohgKE2IFdFRc6SNhLAOsKX4wt%2FlnINkt6bxwSGMAYjQ53n3Y%3D\",\r\n\"Collections\":[\r\n{\r\n\"CollectionId\": \"Subscriptions\",\r\n\"SubProfileId\": 1,\r\n\"BrandName\": \"Vacanceselect\",\r\n\"BrandId\": 1,\r\n\"TypeName\": \"Newsletter\",\r\n\"TypeId\": 1,\r\n\"CountryCode\": \"NL\",\r\n\"CountryId\": 1,\r\n\"SubscriptionDateTime\": \"2017-07-04 09:56\",\r\n\"SubscriptionPauseEnd\": \"2000-01-02\", \r\n\"SendConfirmation\": 1,\r\n\"Origin\": \"Leadmagnet\"\r\n},\r\n{\r\n\"CollectionId\": \"Subscriptions\",\r\n\"SubProfileId\": 105,\r\n\"BrandName\": \"Vacanceselect\",\r\n\"BrandId\": 1,\r\n\"TypeName\": \"AS\",\r\n\"TypeId\": 4,\r\n\"SubscriptionPauseEnd\": \"2000-01-02\"\r\n},\r\n{\r\n\"CollectionId\": \"Subscriptions\",  \r\n\"SubProfileId\": 106,\r\n\"BrandName\": \"Selectcamp\",\r\n\"BrandId\": 2,\r\n\"TypeName\": \"AS\",\r\n\"TypeId\": 4,\r\n\"SubscriptionPauseEnd\": \"2000-01-02\"\r\n}\r\n]\r\n}"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "1433f89e-1c1f-4c90-9101-841c5354470d",
+          "name": "SaveProfile_VacanceSelect_T03_InsertSearch",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "\r\n{\r\n\"Database\" :\"{{vacanceselect}}\",\r\n\t\"Email\":\"jos1@pimarketing.nl\",\r\n\"Collections\":[\r\n{\r\n\"CollectionId\": \"Searches\",\r\n\"CreatedDateTime\": \"2017-07-04 10:38\",\r\n\"CountryName\": \"Frankrijk\",\r\n\"AreaName\": \"Parijs & omgeving\",\r\n\"LocationName\": \"Camping La Croix du Vieux Pont\",\r\n\"LocationImage\": \"https://vacanceselect-528047.c.cdn77.org/mediavlg/photo/orgineel/f-02290_1_001.jpg\",\r\n\"SearchLink\": \"https://vacanceselect-528047.c.cdn77.org/mediavlg/photo/orgineel/f-02290_1_001.jpg\",\r\n\"Culture\": \"nl-NL\",\r\n\"Brand\": \"vacanceselect\",\r\n\"LocationId\": 51514\r\n}\r\n]\r\n}"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "2c3b8a49-7696-4145-a900-cc7b9fe465a8",
+          "name": "SaveProfile_VacanceSelect_T04_InsertBookAbandonBooking",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\t\"Database\" :\"{{vacanceselect}}\",\r\n\t\"Email\":\"jos1@pimarketing.nl\",\r\n\"Language\":\"NL\",\r\n\"MyVSStatus\": 1,\r\n\"MyVSRequestUrl\": \"https://www.vacanceselect.com/nl/mijn-vacanceselect/accountrequestactiveren?requestid=jddF2%2BLiWX1u2uoJgr6EMoIzQ9lp51IUg4MGF6mZ%2BvP4HLSQox8TJG5b9Y8AP9zF6Zb5anGHbGZSS5jUowTIkI5l7FfW0YqYoPcBffwAteYMr2ZEQs9bnzG81IT9rX%2BiC3o7U36scnjb8MiFvEIXI42B84JrBUuII2BAC5ySjhbH%2F0dI8msiTBRm9etcmxeVP25CcpPVsNTL7ny3jR91VhmGvi%2FU2pQNejYey5gRu41kM5y6L5Xl%2BFBQf65vfGGgBDtPSMwkuAo%2Fg5QbpYVo0Kg452F3ldPqrf9Rq762jf0%3D\",\r\n\"Collections\":[\r\n{\r\n\"CollectionId\": \"BookAbandons\",  \r\n\"CreatedDateTime\": \"2017-07-04 10:47\",\r\n\"ArrivalDate\": \"2017-07-16\",\r\n\"DepartureDate\": \"2017-07-23\",\r\n\"Duration\": 7,\r\n\"Persons\": 2, \r\n\"LocationId\": 51514,\r\n\"LocationName\": \"Camping La Croix du Vieux Pont\",\r\n\"LocationGroup\": \"Camping\",\r\n\"LocationImage\": \"https://vacanceselect-528047.c.cdn77.org/mediavlg/photo/orgineel/f-02290_1_001.jpg\",\r\n\"LocationLink\": \"https://www.vacanceselect.com/nl/camping/frankrijk/parijs-omgeving/camping-la-croix-du-vieux-pont/51514\",\r\n\"Booklink\": \"https://www.vacanceselect.com/nl/boeken/stap-1/15268/c80e5712cab24e9f8a599a33a1e0534e\",\r\n\"BookLinkExpireDateTime\": \"2017-07-25 08:46\",\r\n\"ProductId\": 15268,\r\n\"ProductName\": \"Stacaravan 2 slk\",\r\n\"Latitude\": \"49.40489\",\r\n\"Longitude\": \"3.13308\",\r\n\"CountryCode\": \"F\",\r\n\"CountryName\": \"Frankrijk\",\r\n\"AreaCode\": \"PA\",\r\n\"AreaName\": \"Parijs & Omgeving\",\r\n\"CityName\": \"Berny-Rivi\u00e8ra\",\r\n\"SubProfileId\": \"c80e5712cab24e9f8a599a33a1e0534f\",\r\n\"PriceTotal\": \"EUR 1016,58\",\r\n\"Brand\": \"Vacanceselect\",\r\n\"Culture\": \"nl-NL\",\r\n\"Origin\": \"Bookabandon\"\r\n}\r\n]\r\n}"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "9c3ad296-8969-4423-b5b5-8fc912e9c565",
+          "name": "SaveProfile_VacanceSelect_T05_InsertBooking",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"Database\" :\"{{vacanceselect}}\",\r\n\t\"Email\":\"jos1@pimarketing.nl\",\r\n\"Initials\":\"E.G.\",\r\n\"FirstName\": \"Abby\",\r\n\"LastName\": \"den Teuling\",\r\n\"Gender\": \"Female\",\r\n\"Language\": \"NL\",\r\n\"BirthDate\": \"1974-11-02\",\r\n\"CountryName\": \"Netherlands\",\r\n\"CountryCode\": \"NL\",\r\n\"City\": \"Raalte\",\r\n\"Phone\": \"+3162245854\",\r\n\"MyVSStatus\": 1,\r\n\r\n\"Collections\":[\r\n{\r\n\"CollectionId\": \"Subscriptions\",\r\n\"SubProfileId\": 1,\r\n\"BrandName\": \"Vacanceselect\",\r\n\"BrandId\": 1,\r\n\"TypeName\": \"Newsletter\",\r\n\"TypeId\": 1,\r\n\"CountryCode\": \"NL\",\r\n\"CountryId\": 1,\r\n\"SubscriptionDateTime\": \"2017-07-04 09:56\",\r\n\"SubscriptionPauseEnd\": \"2000-01-02\", \r\n\"SendConfirmation\": 1,\r\n\"Origin\": \"Booking\"},\r\n{\r\n\"CollectionId\": \"Subscriptions\",  \r\n\"SubProfileId\": 105,\r\n\"BrandName\": \"Vacanceselect\",\r\n\"BrandId\": 1,\r\n\"TypeName\": \"AS\",\r\n\"TypeId\": 4,\r\n\"SubscriptionPauseEnd\": \"2000-01-02\"\r\n},\r\n{\r\n\"CollectionId\": \"Subscriptions\",\r\n\"SubProfileId\": 106,\r\n\"BrandName\": \"Selectcamp\",\r\n\"BrandId\": 2,\r\n\"TypeName\": \"AS\",\r\n\"TypeId\": 4,\r\n\"SubscriptionPauseEnd\": \"2000-01-02\"\r\n},\r\n{\r\n\"CollectionId\": \"Orders\",\r\n\"SubProfileId\": \"S0089539\",\r\n\"CreatedDateTime\": \"2017-06-23 12:44\",\r\n\"ProductId\": 15526,\r\n\"Culture\": \"nl-NL\",\r\n\"Brand\": \"Vacanceselect\",\r\n\"ArrivalDate\": \"2017-07-22\",\r\n\"DepartureDate\": \"2017-07-29\"\r\n},\r\n{\r\n\"CollectionId\": \"Bookings\",\r\n\"SubProfileId\": \"S0089539\",\r\n\"CreatedDateTime\": \"2017-06-23 00:00:00\",\r\n\"LastEdit\": \"2015-01-01 12:00\",\r\n\"ProductId\": 15526,\r\n\"Culture\": \"nl-NL\",\r\n\"Brand\": \"Vacanceselect\",\r\n\"ArrivalDate\": \"2017-07-22\",\r\n\"DepartureDate\": \"2017-07-29\",\r\n\"Duration\": 7,\r\n\"Persons\": 4,\r\n\"PriceOriginal\": \"EUR 1905,72\",\r\n\"PriceTotal\": \"EUR 1249,22\",\r\n\"LocationId\": 51671,\r\n\"LocationName\": \"Camping La Carabasee\", \r\n\"LocationGroup\": \"Camping\",\r\n\"ProductGroup\": \"Stacaravan\",\r\n\"ProductGroupCode\":\"Mobilehome\",\r\n\"ProductIsSelectcamp\": 0,\r\n\"ProductName\": \"Stacaravan Excellence 3 slk airco\",\r\n\"Latitude\": \"43.17484\",\r\n\"Longitude\": \"3.251462\",\r\n\"CountryCode\": \"F\",\r\n\"CountryName\": \"Frankrijk\",\r\n\"AreaCode\": \"MS\",\r\n\"AreaName\": \"Languedoc-Roussillon\",\r\n\"CityName\": \"VIA SUR MER\",\r\n\"PreBooking\": 0, \r\n\"BookingStatus\": \"OK\"\r\n}\r\n]\r\n}"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "353c8f49-bfc9-4697-902b-bd9b8ff87b63",
+          "name": "SaveProfile_VacanceSelect_T06_CreateProfile",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"Database\" :\"{{vacanceselect}}\",\"Email\":\"jos2@pimarketing.nl\",\r\n\"Language\":\"NL\",\r\n\"MyVSStatus\": 1,\r\n\"MyVSRequestUrl\": \"https://www.vacanceselect.com/nl/mijn-vacanceselect/accountrequestactiveren?requestid=LWaNE0t8bT2P01%2Fx%2BE6NhtI7qzPOhl9gwdkDzrd1USgWIBNWfUvzvc0RVPY%2FhbnS0z2R28bfpO8ArZksII8quL4fgdEx5I9g5M6DI%2FvmgQrNmb6C2LVxyLxKGg%2Fbo02lMKNddVBlpRpQA8mV%2BNkxUdDDFkuUAij76QRU%2B2h3hmMSJv1GZ2a2yBsAzZ2r44EUjg5PLjf42bp5MF3EpDLYYjoLzdysQEySu36pPbEzY8SW60zm8rquh27I%2BFoohgKE2IFdFRc6SNhLAOsKX4wt%2FlnINkt6bxwSGMAYjQ53n3Y%3D\",\r\n\"Collections\":[\r\n{\r\n\"CollectionId\": \"Subscriptions\",\r\n\"SubProfileId\": 1,\r\n\"BrandName\": \"Vacanceselect\",\r\n\"BrandId\": 1,\r\n\"TypeName\": \"Newsletter\",\r\n\"TypeId\": 1,\r\n\"CountryCode\": \"NL\",\r\n\"CountryId\": 1,\r\n\"SubscriptionDateTime\": \"2017-07-04 09:56\",\r\n\"SubscriptionPauseEnd\": \"2000-01-02\", \r\n\"SendConfirmation\": 1,\r\n\"Origin\": \"SignUp\"\r\n},\r\n{\r\n\"CollectionId\": \"Subscriptions\",\r\n\"SubProfileId\": 105,\r\n\"BrandName\": \"Vacanceselect\",\r\n\"BrandId\": 1,\r\n\"TypeName\": \"AS\",\r\n\"TypeId\": 4,\r\n\"SubscriptionPauseEnd\": \"2000-01-02\"\r\n},\r\n{\r\n\"CollectionId\": \"Subscriptions\",\r\n\"SubProfileId\": 106,\r\n\"BrandName\": \"Selectcamp\",\r\n\"BrandId\": 2,\r\n\"TypeName\": \"AS\",\r\n\"TypeId\": 4,\r\n\"SubscriptionPauseEnd\": \"2000-01-02\"\r\n}\r\n]\r\n}"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "47ec0d53-1e42-4099-ad1b-52b069c7620f",
+          "name": "SaveProfile_Vacanceselect_T07_UpdateProfile",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"Email\": \"jos@pimarketing.nl\",\r\n\t\"Database\" :\"{{thecompanygolfclub}}\",\r\n\t\"Currency\":\"EUR\",\r\n\t\"MailLanguage\": \"NL\"\r\n}"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "f9678e3e-f017-42f9-8a9c-bc78fca0484f",
+          "name": "SaveProfile_Vacanceselect_T08_GetProfile",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"Email\": \"jos@pimarketing.nl\",\r\n\t\"Database\" :\"{{thecompanygolfclub}}\",\r\n\t\"ReturnProfile\" : 1\r\n}"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "95ab27d7-c196-4e20-aec0-6152087a4a88",
+      "name": "VakantiegeldMonitor",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "84b72a4f-30b0-4021-8045-995070213ed8",
+          "name": "SaveProfile_VakantiegeldMonitor_T01_CreateProfile",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\"Database\" :\"{{vakantiegeldmonitor}}\",\r\n\t\"Email\":\"jos1@pimarketing.nl\",\r\n\"Voornaam\": \"Abby\",\r\n\"Achternaam\": \"den Teuling\",\r\n\"VakantieGeboekt\": 1,\r\n\"VakantieLand\": \"Itali\u00eb\",\r\n\"Optout\": 0,\r\n\"Leeftijd\": \"65 jaar of ouder\",\r\n\"VakantiegeldBesteding\": \"Vakantie\",\r\n\"Vacanceselect\": \"Ja, dat wil ik!\",\r\n\"HolidayCars\": \"Ja, dat wil ik!\",\r\n\"CampingNavigator\": \"Ja, dat wil ik!\"\r\n}"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "e8aa14be-de9b-4956-987a-4e1651f7a76e",
+          "name": "SaveProfile_VakantiegeldMonitor_T02_UpdateProfile",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"Email\": \"jos@pimarketing.nl\",\r\n\t\"Database\" :\"{{vakantiegeldmonitor}}\",\r\n\t\"Currency\":\"EUR\",\r\n\t\"MailLanguage\": \"NL\"\r\n}"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "817d63c2-6f94-49a9-b555-8966f98ba3e3",
+          "name": "SaveProfile_VakantiegeldMonitor_T03_GetProfile",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"Email\": \"jos@pimarketing.nl\",\r\n\t\"Database\" :\"{{vakantiegeldmonitor}}\",\r\n\t\"ReturnProfile\" : 1\r\n}"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "7bf03426-75b3-497f-8103-10ae84423b24",
+      "name": "initalia",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "9194214b-8c27-48cc-9cbb-8d9c0816b20c",
+          "name": "SaveProfile_initalia_T01_CreateProfile",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\"Database\" :\"{{initalia}}\",\r\n\t\"Email\":\"jos1@pimarketing.nl\",\r\n\"Voornaam\": \"Abby\",\r\n\"Achternaam\": \"den Teuling\",\r\n\"VakantieGeboekt\": 1,\r\n\"VakantieLand\": \"Itali\u00eb\",\r\n\"Optout\": 0,\r\n\"Leeftijd\": \"65 jaar of ouder\",\r\n\"VakantiegeldBesteding\": \"Vakantie\",\r\n\"Vacanceselect\": \"Ja, dat wil ik!\",\r\n\"HolidayCars\": \"Ja, dat wil ik!\",\r\n\"CampingNavigator\": \"Ja, dat wil ik!\"\r\n}"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "161b3c66-b33f-44e9-ab11-d4d52a517d0a",
+          "name": "SaveProfile_initalia_T02_UpdateProfile",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"Email\": \"jos@pimarketing.nl\",\r\n\t\"Database\" :\"{{initalia}}\",\r\n\t\"Currency\":\"EUR\",\r\n\t\"MailLanguage\": \"NL\"\r\n}"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "256613e6-6c3a-42e6-ad9a-61089425822e",
+          "name": "SaveProfile_initalia_T03_GetProfile",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"Email\": \"jos@pimarketing.nl\",\r\n\t\"Database\" :\"{{initalia}}\",\r\n\t\"ReturnProfile\" : 1\r\n}"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "b2d8d420-64db-4f2d-afa7-3cb416b5163e",
+      "name": "campingreviews",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "f63b4128-4bfd-47ab-b8eb-1095cbe86a82",
+          "name": "SaveProfile_campingreviews_T01_CreateProfile",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\"Database\" :\"{{campingreviews}}\",\r\n\t\"Email\":\"jos1@pimarketing.nl\",\r\n\"Voornaam\": \"Abby\",\r\n\"Achternaam\": \"den Teuling\",\r\n\"VakantieGeboekt\": 1,\r\n\"VakantieLand\": \"Itali\u00eb\",\r\n\"Optout\": 0,\r\n\"Leeftijd\": \"65 jaar of ouder\",\r\n\"VakantiegeldBesteding\": \"Vakantie\",\r\n\"Vacanceselect\": \"Ja, dat wil ik!\",\r\n\"HolidayCars\": \"Ja, dat wil ik!\",\r\n\"CampingNavigator\": \"Ja, dat wil ik!\"\r\n}"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "fc9521a9-a2ad-4ee7-9f5b-e6ef7dc556af",
+          "name": "SaveProfile_campingreviews_T02_UpdateProfile",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"Email\": \"jos@pimarketing.nl\",\r\n\t\"Database\" :\"{{campingreviews}}\",\r\n\t\"Currency\":\"EUR\",\r\n\t\"MailLanguage\": \"NL\"\r\n}"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "f5772518-9892-4794-83d4-2efec495737a",
+          "name": "SaveProfile_campingreviews_T03_GetProfile",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"Email\": \"jos@pimarketing.nl\",\r\n\t\"Database\" :\"{{campingreviews}}\",\r\n\t\"ReturnProfile\" : 1\r\n}"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "7a4cd87e-d5f5-4bb4-a931-0ca9c68d8f1c",
+      "name": "carrental8",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "ec85eb82-5193-448a-ae39-2f9c64af0aad",
+          "name": "SaveProfile_carrental8_T01_CreateProfile",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\"Database\" :\"{{carrental8}}\",\r\n\t\"Email\":\"jos1@pimarketing.nl\",\r\n\"Voornaam\": \"Abby\",\r\n\"Achternaam\": \"den Teuling\",\r\n\"VakantieGeboekt\": 1,\r\n\"VakantieLand\": \"Itali\u00eb\",\r\n\"Optout\": 0,\r\n\"Leeftijd\": \"65 jaar of ouder\",\r\n\"VakantiegeldBesteding\": \"Vakantie\",\r\n\"Vacanceselect\": \"Ja, dat wil ik!\",\r\n\"HolidayCars\": \"Ja, dat wil ik!\",\r\n\"CampingNavigator\": \"Ja, dat wil ik!\"\r\n}"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "59c74fc5-886a-490b-9821-9f784e2babbc",
+          "name": "SaveProfile_carrental8_T02_UpdateProfile",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"Email\": \"jos@pimarketing.nl\",\r\n\t\"Database\" :\"{{carrental8}}\",\r\n\t\"Currency\":\"EUR\",\r\n\t\"MailLanguage\": \"NL\"\r\n}"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "6f2295a8-b919-4529-a62a-9ea3dbd8be65",
+          "name": "SaveProfile_carrental8_T03_GetProfile",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"Email\": \"jos@pimarketing.nl\",\r\n\t\"Database\" :\"{{carrental8}}\",\r\n\t\"ReturnProfile\" : 1\r\n}"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "ca5aea2e-51e6-4e04-aa35-f1396fc280cf",
+      "name": "solfly",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "b78dfcde-56ae-4d41-8859-50f5f949efe0",
+          "name": "SaveProfile_solfly_T01_CreateProfile",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\"Database\" :\"{{solfly}}\",\r\n\t\"Email\":\"jos1@pimarketing.nl\",\r\n\"Voornaam\": \"Abby\",\r\n\"Achternaam\": \"den Teuling\",\r\n\"VakantieGeboekt\": 1,\r\n\"VakantieLand\": \"Itali\u00eb\",\r\n\"Optout\": 0,\r\n\"Leeftijd\": \"65 jaar of ouder\",\r\n\"VakantiegeldBesteding\": \"Vakantie\",\r\n\"Vacanceselect\": \"Ja, dat wil ik!\",\r\n\"HolidayCars\": \"Ja, dat wil ik!\",\r\n\"CampingNavigator\": \"Ja, dat wil ik!\"\r\n}"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "69510df8-4e80-4a7a-8630-f433b80fcaf4",
+          "name": "SaveProfile_solfly_T02_UpdateProfile",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"Email\": \"jos@pimarketing.nl\",\r\n\t\"Database\" :\"{{solfly}}\",\r\n\t\"Currency\":\"EUR\",\r\n\t\"MailLanguage\": \"NL\"\r\n}"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "26a6cdcd-a458-4210-8140-35094367f648",
+          "name": "SaveProfile_solfly_T03_GetProfile",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"Email\": \"jos@pimarketing.nl\",\r\n\t\"Database\" :\"{{solfly}}\",\r\n\t\"ReturnProfile\" : 1\r\n}"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "4e2fec34-d13e-4383-af24-69056669081d",
+      "name": "styleintravel",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "1d752896-71c9-49e7-a3e2-4d9a27b35b13",
+          "name": "SaveProfile_styleintravel_T01_CreateProfile",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\"Database\" :\"{{styleintravel}}\",\r\n\t\"Email\":\"jos1@pimarketing.nl\",\r\n\"Voornaam\": \"Abby\",\r\n\"Achternaam\": \"den Teuling\",\r\n\"VakantieGeboekt\": 1,\r\n\"VakantieLand\": \"Itali\u00eb\",\r\n\"Optout\": 0,\r\n\"Leeftijd\": \"65 jaar of ouder\",\r\n\"VakantiegeldBesteding\": \"Vakantie\",\r\n\"Vacanceselect\": \"Ja, dat wil ik!\",\r\n\"HolidayCars\": \"Ja, dat wil ik!\",\r\n\"CampingNavigator\": \"Ja, dat wil ik!\"\r\n}"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "6dd27794-3ab1-4351-93a0-17cc804c5173",
+          "name": "SaveProfile_styleintravel_T02_UpdateProfile",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"Email\": \"jos@pimarketing.nl\",\r\n\t\"Database\" :\"{{styleintravel}}\",\r\n\t\"Currency\":\"EUR\",\r\n\t\"MailLanguage\": \"NL\"\r\n}"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "d2e32739-688f-4567-9a5c-54c1eb262700",
+          "name": "SaveProfile_styleintravel_T03_GetProfile",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"Email\": \"jos@pimarketing.nl\",\r\n\t\"Database\" :\"{{styleintravel}}\",\r\n\t\"ReturnProfile\" : 1\r\n}"
+            },
+            "url": "{{url}}"
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

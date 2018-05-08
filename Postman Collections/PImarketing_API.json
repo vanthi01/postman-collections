@@ -409,7 +409,7 @@
       "item": [
         {
           "_postman_id": "ae0dc1e5-87c5-4f81-97ac-922d5487bff3",
-          "name": "SaveProfile_CompanyGolfClub_T01_CreateProfile",
+          "name": "SaveProfile_CompanyGolfClub_T01_CreateProfile_VanTest",
           "event": [
             {
               "listen": "test",

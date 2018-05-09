@@ -2729,6 +2729,65 @@
             "description": "We evaluate the response of a simple create-subprofile-request with a malformed body"
           },
           "response": []
+        },
+        {
+          "_postman_id": "be504f3d-e519-4975-b505-7334f15f88d8",
+          "name": "SaveProfile_C01_HasError Copy",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var helpers = eval(globals.loadProfileHelpers);\r",
+                  "\r",
+                  "var responseJSON = JSON.parse(responseBody); \r",
+                  "helpers.logTestCaseInfo(responseJSON);\r",
+                  "\r",
+                  "// In this test case the body is malformed, this should return a message stating that an error occurred, but with status 200\r",
+                  "\r",
+                  "tests[\"Status code is 200 (actual: \" + responseCode.code + \")\"] = responseCode.code === 200;\r",
+                  "tests[\"Error - IsSuccess:false (actual: \" + responseJSON.IsSuccess + \")\"] = responseJSON.IsSuccess == false;\r",
+                  "tests[\"Error - HasError:true (actual: \" + responseJSON.HasError + \")\"] = responseJSON.HasError == true;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{auth_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Email\": \"{{SaveProfile_ProfileEmailAddress}}\",\r\n  \"Database\": \"holidaycars\"\r\n  \"ReturnProfile\": \"1\",\r\n}"
+            },
+            "url": {
+              "raw": "http://{{base_url}}/pw.axd?pricewatchservice.svc/web/SaveProfile",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pw.axd"
+              ],
+              "query": [
+                {
+                  "key": "pricewatchservice.svc/web/SaveProfile",
+                  "value": null
+                }
+              ]
+            },
+            "description": "We evaluate the response of a simple create-subprofile-request with a malformed body"
+          },
+          "response": []
         }
       ]
     },

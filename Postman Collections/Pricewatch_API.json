@@ -2788,7 +2788,8 @@
               "query": [
                 {
                   "key": "pricewatchservice.svc/web/SaveProfile",
-                  "value": null
+                  "value": "",
+                  "equals": false
                 }
               ]
             },

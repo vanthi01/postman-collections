@@ -1,0 +1,2758 @@
+{
+  "info": {
+    "_postman_id": "501a2d26-7494-5530-1a6d-51b5b49bccf6",
+    "name": "Pricewatch API",
+    "description": "Sample requests to call Pricewatch API\n\nThe documentation for the endpoints as well as example responses can be found at [https://echo.getpostman.com](https://echo.getpostman.com?source=echo-collection-app-onboarding)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "_postman_id": "e63d8225-c4f1-389e-b3c5-ec683a9f201f",
+      "name": "GetPrices",
+      "description": "Test suite for GetPrices API",
+      "item": [
+        {
+          "_postman_id": "29cc35f0-5c6f-e462-b048-cdb759ef3dac",
+          "name": "GetPrices_01_HC_Module11",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "postman.setGlobalVariable(\"getPricesHelper\", function getPricesHelper() {",
+                  "  let helpers = {};",
+                  "  /*",
+                  "    helpers.getFutureDateAsIsoString = function getPickupDateAsIsoString(month){",
+                  "        var today = new Date();",
+                  "        var futureDateTemp = today.setMonth(today.getMonth() + month);",
+                  "        var futureDate = new Date(futureDateTemp);",
+                  "        return futreDate.toISOString();",
+                  "    }*/",
+                  "    ",
+                  "     helpers.getPickupDateAsIsoString = function getPickupDateAsIsoString(){",
+                  "        var today = new Date();",
+                  "        var futureDateTemp = today.setMonth(today.getMonth() + 3);",
+                  "        var futureDate = new Date(futureDateTemp);",
+                  "        var tempStr =  futureDate.toISOString().substring(0,10);",
+                  "        return tempStr + 'T09:00:00';",
+                  "    }",
+                  "    ",
+                  "     helpers.getReturnDateAsIsoString = function getReturnDateAsIsoString(){",
+                  "        var today = new Date();",
+                  "        var futureDateTemp = today.setMonth(today.getMonth() + 3);",
+                  "        var futureDateTemp2 = new Date(futureDateTemp);",
+                  "        var futureDateTemp3 = futureDateTemp2.setDate(futureDateTemp2.getDate() + 3);",
+                  "        var returnDate = new Date(futureDateTemp3);",
+                  "        var tempStr =  returnDate.toISOString().substring(0,10);",
+                  "        return tempStr + 'T09:00:00';",
+                  "    }",
+                  "    ",
+                  "    helpers.logTestCaseInfo = function logTestCaseInfo(responseJSON){",
+                  "        console.log('PriceResults Count: ' + responseJSON.PriceResults.length);",
+                  "        console.log('LogId: ' + responseJSON.RequestId);",
+                  "    }",
+                  "   ",
+                  "    return helpers;",
+                  "} + '; getPricesHelper();');",
+                  "",
+                  "var helpers = eval(globals.getPricesHelper);",
+                  "postman.setGlobalVariable(\"PickupDate\", helpers.getPickupDateAsIsoString().replace('Z',''));",
+                  "postman.setGlobalVariable(\"ReturnDate\", helpers.getReturnDateAsIsoString());",
+                  "",
+                  "postman.setGlobalVariable(\"LocationId_AmsterdamAirport\",478);",
+                  "postman.setGlobalVariable(\"MerchantId_HC\",1);",
+                  "postman.setGlobalVariable(\"MerchantId_AutoEuro\",3);",
+                  "postman.setGlobalVariable(\"MerchantId_CarRental8V2\",10);",
+                  "postman.setGlobalVariable(\"MerchantId_CarTrawler\",9);",
+                  "postman.setGlobalVariable(\"MerchantId_RentalCars\",8);",
+                  "",
+                  "",
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var assertDescription = \"CheckCurrencyAndHasResult\";",
+                  "",
+                  "responseJSON = JSON.parse(responseBody); ",
+                  "var helpers = eval(globals.getPricesHelper);",
+                  "helpers.logTestCaseInfo(responseJSON);",
+                  "var requestIdNotEmpty = responseJSON.RequestId !== \"\";",
+                  "var currencyValue = \"EUR\";",
+                  "//console.log('Actual Currency value in response: ' + responseJSON.Currency);",
+                  "var priceResultsCountNotZero = responseJSON.PriceResults.length > 0",
+                  "tests[assertDescription] = requestIdNotEmpty && currencyValue && priceResultsCountNotZero;",
+                  "",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{auth_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Currency\": \"EUR\",\r\n  \"Pickupdate\": \"{{PickupDate}}\",\r\n  \"Returndate\": \"{{ReturnDate}}\",\r\n  \"PickupLocationId\": {{LocationId_AmsterdamAirport}},\r\n  \"ReturnLocationId\": {{LocationId_AmsterdamAirport}},\r\n  \"IncludeMerchants\": false,\r\n  \"CacheDisabled\": true,\r\n  \"Language\": \"EN\",\r\n  \"ClientIpAddress\": \"8.8.8.8\",\r\n  \"MerchantId\": {{MerchantId_HC}},\r\n  \"AccountId\": 1173,\r\n  \"BookerCountry\": \"NL\",\r\n  \"ModuleId\" : \"11\"\r\n}"
+            },
+            "url": {
+              "raw": "http://{{base_url}}/pw.axd?pricewatchservice.svc/web/GetPrices",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pw.axd"
+              ],
+              "query": [
+                {
+                  "key": "pricewatchservice.svc/web/GetPrices",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "e54250f3-adb7-8051-3c3c-2a28c1a8e100",
+          "name": "GetPrices_02_HC",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var assertDescription = \"CheckCurrencyAndHasResult\";",
+                  "",
+                  "responseJSON = JSON.parse(responseBody); ",
+                  "var helpers = eval(globals.getPricesHelper);",
+                  "helpers.logTestCaseInfo(responseJSON);",
+                  "",
+                  "var requestIdNotEmpty = responseJSON.RequestId !== \"\";",
+                  "var currencyValue = \"EUR\";",
+                  "//console.log('Actual Currency value in response: ' + responseJSON.Currency);",
+                  "var priceResultsCountNotZero = responseJSON.PriceResults.length > 0",
+                  "tests[assertDescription] = requestIdNotEmpty && currencyValue && priceResultsCountNotZero;",
+                  "",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{auth_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Currency\": \"EUR\",\r\n  \"Pickupdate\": \"{{PickupDate}}\",\r\n  \"Returndate\": \"{{ReturnDate}}\",\r\n  \"PickupLocationId\": {{LocationId_AmsterdamAirport}},\r\n  \"ReturnLocationId\": {{LocationId_AmsterdamAirport}},\r\n  \"IncludeMerchants\": false,\r\n  \"CacheDisabled\": true,\r\n  \"Language\": \"EN\",\r\n  \"ClientIpAddress\": \"8.8.8.8\",\r\n \"MerchantId\": {{MerchantId_HC}},\r\n  \"AccountId\": 1173,\r\n  \"BookerCountry\": \"NL\"\r\n}"
+            },
+            "url": {
+              "raw": "http://{{base_url}}/pw.axd?pricewatchservice.svc/web/GetPrices",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pw.axd"
+              ],
+              "query": [
+                {
+                  "key": "pricewatchservice.svc/web/GetPrices",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "66032b7d-2bdf-96cd-bed4-3f85f35c7612",
+          "name": "GetPrices_03_AutoEuro",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "postman.setGlobalVariable(\"LocationId_AmsterdamAirport\",478);",
+                  "postman.setGlobalVariable(\"MerchantId_HC\",1);",
+                  "postman.setGlobalVariable(\"MerchantId_AutoEuro\",3);",
+                  "postman.setGlobalVariable(\"MerchantId_CarRental8V2\",10);",
+                  "postman.setGlobalVariable(\"MerchantId_CarTrawler\",9);",
+                  "postman.setGlobalVariable(\"MerchantId_RentalCars\",8);"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var assertDescription = \"CheckCurrencyAndHasResult\";",
+                  "",
+                  "responseJSON = JSON.parse(responseBody); ",
+                  "var helpers = eval(globals.getPricesHelper);",
+                  "helpers.logTestCaseInfo(responseJSON);",
+                  "",
+                  "var requestIdNotEmpty = responseJSON.RequestId !== \"\";",
+                  "var currencyValue = \"EUR\";",
+                  "var priceResultsCountNotZero = responseJSON.PriceResults.length > 0",
+                  "tests[assertDescription] = requestIdNotEmpty && currencyValue && priceResultsCountNotZero;",
+                  "",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{auth_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Currency\": \"EUR\",\r\n   \"Pickupdate\": \"{{PickupDate}}\",\r\n  \"Returndate\": \"{{ReturnDate}}\",\r\n  \"PickupLocationId\": 478,\r\n  \"ReturnLocationId\": 478,\r\n  \"IncludeMerchants\": true,\r\n  \"CacheDisabled\": true,\r\n  \"Language\": \"EN\",\r\n  \"ClientIpAddress\": \"8.8.8.8\",\r\n  \"MerchantId\": \"3\",\r\n  \"AccountId\": 1173,\r\n  \"BookerCountry\": \"NL\"\r\n}"
+            },
+            "url": {
+              "raw": "http://{{base_url}}/pw.axd?pricewatchservice.svc/web/GetPrices",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pw.axd"
+              ],
+              "query": [
+                {
+                  "key": "pricewatchservice.svc/web/GetPrices",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "1e3d4605-195a-73f8-c9af-a46c5b7dc9dd",
+          "name": "GetPrices_04_AutoEuro_BookerCountryInvalid",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var assertDescription = \"CheckCurrencyAndHasResult\";",
+                  "",
+                  "responseJSON = JSON.parse(responseBody); ",
+                  "var helpers = eval(globals.getPricesHelper);",
+                  "helpers.logTestCaseInfo(responseJSON);",
+                  "",
+                  "var requestIdNotEmpty = responseJSON.RequestId !== \"\";",
+                  "var currencyValue = \"EUR\";",
+                  "var priceResultsCountNotZero = responseJSON.PriceResults.length > 0",
+                  "",
+                  "tests[assertDescription] = requestIdNotEmpty && currencyValue && priceResultsCountNotZero;",
+                  "",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{auth_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Currency\": \"EUR\",\r\n  \"Pickupdate\": \"2017-05-13T10:00:00\",\r\n  \"Returndate\": \"2017-06-03T10:00:00\",\r\n  \"PickupLocationId\": 4349,\r\n  \"ReturnLocationId\": 4349,\r\n  \"IncludeMerchants\": false,\r\n  \"CacheDisabled\": true,\r\n  \"Language\": \"EN\",\r\n  \"ClientIpAddress\": \"8.8.8.8\",\r\n  \"MerchantId\": \"3\",\r\n  \"AccountId\": 1173,\r\n  \"BookerCountry\": \"VN\"\r\n}"
+            },
+            "url": {
+              "raw": "http://{{base_url}}/pw.axd?pricewatchservice.svc/web/GetPrices",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pw.axd"
+              ],
+              "query": [
+                {
+                  "key": "pricewatchservice.svc/web/GetPrices",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "0ad8a72c-368b-9cef-c256-623239ec0314",
+          "name": "GetPrices_05_AutoEuro_Module11",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var assertDescription = \"CheckCurrencyAndHasResult\";",
+                  "",
+                  "responseJSON = JSON.parse(responseBody); ",
+                  "var helpers = eval(globals.getPricesHelper);",
+                  "helpers.logTestCaseInfo(responseJSON);",
+                  "",
+                  "var requestIdNotEmpty = responseJSON.RequestId !== \"\";",
+                  "var currencyValue = \"EUR\";",
+                  "var priceResultsCountNotZero = responseJSON.PriceResults.length > 0",
+                  "",
+                  "tests[assertDescription] = requestIdNotEmpty && currencyValue && priceResultsCountNotZero;",
+                  "",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{auth_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Currency\": \"EUR\",\r\n   \"Pickupdate\": \"{{PickupDate}}\",\r\n  \"Returndate\": \"{{ReturnDate}}\",\r\n  \"PickupLocationId\": {{LocationId_AmsterdamAirport}},\r\n  \"ReturnLocationId\": {{LocationId_AmsterdamAirport}},\r\n  \"IncludeMerchants\": false,\r\n  \"CacheDisabled\": true,\r\n  \"Language\": \"EN\",\r\n  \"ClientIpAddress\": \"8.8.8.8\",\r\n  \"MerchantId\": {{MerchantId_AutoEuro}},\r\n  \"AccountId\": 1173,\r\n  \"BookerCountry\": \"NL\",\r\n  \"ModuleId\" : \"11\"\r\n}"
+            },
+            "url": {
+              "raw": "http://{{base_url}}/pw.axd?pricewatchservice.svc/web/GetPrices",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pw.axd"
+              ],
+              "query": [
+                {
+                  "key": "pricewatchservice.svc/web/GetPrices",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "431aff91-e28e-f652-5604-b92522a9c0c6",
+          "name": "GetPrices_06_AutoEuro_DKCountry",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var assertDescription = \"CheckCurrencyAndHasResult\";",
+                  "",
+                  "responseJSON = JSON.parse(responseBody); ",
+                  "var helpers = eval(globals.getPricesHelper);",
+                  "helpers.logTestCaseInfo(responseJSON);",
+                  "",
+                  "var requestIdNotEmpty = responseJSON.RequestId !== \"\";",
+                  "var currencyValue = \"EUR\";",
+                  "var priceResultsCountNotZero = responseJSON.PriceResults.length > 0",
+                  "",
+                  "tests[assertDescription] = requestIdNotEmpty && currencyValue && priceResultsCountNotZero;",
+                  "",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{auth_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Currency\": \"EUR\",\r\n   \"Pickupdate\": \"{{PickupDate}}\",\r\n  \"Returndate\": \"{{ReturnDate}}\",\r\n  \"PickupLocationId\": {{LocationId_AmsterdamAirport}},\r\n  \"ReturnLocationId\": {{LocationId_AmsterdamAirport}},\r\n  \"IncludeMerchants\": false,\r\n  \"CacheDisabled\": true,\r\n  \"Language\": \"EN\",\r\n  \"ClientIpAddress\": \"8.8.8.8\",\r\n  \"MerchantId\": {{MerchantId_AutoEuro}},\r\n  \"AccountId\": 1173,\r\n  \"BookerCountry\": \"DK\",\r\n  \"ModuleId\" : \"11\"\r\n}"
+            },
+            "url": {
+              "raw": "http://{{base_url}}/pw.axd?pricewatchservice.svc/web/GetPrices",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pw.axd"
+              ],
+              "query": [
+                {
+                  "key": "pricewatchservice.svc/web/GetPrices",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "9e2a26d3-c1be-94fc-17fe-337744d4874c",
+          "name": "GetPrices_07_CarTrawler_Module11",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var assertDescription = \"CheckCurrencyAndHasResult\";",
+                  "",
+                  "responseJSON = JSON.parse(responseBody); ",
+                  "var helpers = eval(globals.getPricesHelper);",
+                  "helpers.logTestCaseInfo(responseJSON);",
+                  "",
+                  "var requestIdNotEmpty = responseJSON.RequestId !== \"\";",
+                  "var currencyValue = \"EUR\";",
+                  "var priceResultsCountNotZero = responseJSON.PriceResults.length > 0",
+                  "",
+                  "tests[assertDescription] = requestIdNotEmpty && currencyValue && priceResultsCountNotZero;",
+                  "",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{auth_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Currency\": \"EUR\",\r\n   \"Pickupdate\": \"{{PickupDate}}\",\r\n  \"Returndate\": \"{{ReturnDate}}\",\r\n  \"PickupLocationId\": {{LocationId_AmsterdamAirport}},\r\n  \"ReturnLocationId\": {{LocationId_AmsterdamAirport}},\r\n  \"IncludeMerchants\": false,\r\n  \"CacheDisabled\": true,\r\n  \"Language\": \"EN\",\r\n  \"ClientIpAddress\": \"8.8.8.8\",\r\n  \"MerchantId\": {{MerchantId_CarTrawler}},\r\n  \"AccountId\": 1173,\r\n  \"BookerCountry\": \"NL\",\r\n  \"ModuleId\" : \"11\"\r\n}"
+            },
+            "url": {
+              "raw": "http://{{base_url}}/pw.axd?pricewatchservice.svc/web/GetPrices",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pw.axd"
+              ],
+              "query": [
+                {
+                  "key": "pricewatchservice.svc/web/GetPrices",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "129d25e5-bd5d-96ef-f062-7778aa37884b",
+          "name": "GetPrices_08_CarTrawler",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var assertDescription = \"CheckCurrencyAndHasResult\";",
+                  "",
+                  "responseJSON = JSON.parse(responseBody); ",
+                  "var helpers = eval(globals.getPricesHelper);",
+                  "helpers.logTestCaseInfo(responseJSON);",
+                  "",
+                  "var requestIdNotEmpty = responseJSON.RequestId !== \"\";",
+                  "var currencyValue = \"EUR\";",
+                  "var priceResultsCountNotZero = responseJSON.PriceResults.length > 0",
+                  "",
+                  "tests[assertDescription] = requestIdNotEmpty && currencyValue && priceResultsCountNotZero;",
+                  "",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{auth_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Currency\": \"EUR\",\r\n   \"Pickupdate\": \"{{PickupDate}}\",\r\n  \"Returndate\": \"{{ReturnDate}}\",\r\n  \"PickupLocationId\": {{LocationId_AmsterdamAirport}},\r\n  \"ReturnLocationId\": {{LocationId_AmsterdamAirport}},\r\n  \"IncludeMerchants\": false,\r\n  \"CacheDisabled\": true,\r\n  \"Language\": \"EN\",\r\n  \"ClientIpAddress\": \"8.8.8.8\",\r\n \"MerchantId\": {{MerchantId_CarTrawler}},\r\n  \"AccountId\": 1173,\r\n  \"BookerCountry\": \"NL\",\r\n  \"ModuleId\" : \"11\"\r\n}"
+            },
+            "url": {
+              "raw": "http://{{base_url}}/pw.axd?pricewatchservice.svc/web/GetPrices",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pw.axd"
+              ],
+              "query": [
+                {
+                  "key": "pricewatchservice.svc/web/GetPrices",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "499a47a5-429b-c704-0cf4-a2f97a831e57",
+          "name": "GetPrices_10_CarRental8V2",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var assertDescription = \"CheckCurrencyAndHasResult\";",
+                  "",
+                  "responseJSON = JSON.parse(responseBody); ",
+                  "var helpers = eval(globals.getPricesHelper);",
+                  "helpers.logTestCaseInfo(responseJSON);",
+                  "",
+                  "var requestIdNotEmpty = responseJSON.RequestId !== \"\";",
+                  "var currencyValue = \"EUR\";",
+                  "var priceResultsCountNotZero = responseJSON.PriceResults.length > 0",
+                  "",
+                  "tests[assertDescription] = requestIdNotEmpty && currencyValue && priceResultsCountNotZero;",
+                  "",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{auth_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Currency\": \"EUR\",\r\n   \"Pickupdate\": \"{{PickupDate}}\",\r\n  \"Returndate\": \"{{ReturnDate}}\",\r\n  \"PickupLocationId\": {{LocationId_AmsterdamAirport}},\r\n  \"ReturnLocationId\": {{LocationId_AmsterdamAirport}},\r\n  \"IncludeMerchants\": false,\r\n  \"CacheDisabled\": true,\r\n  \"Language\": \"EN\",\r\n  \"ClientIpAddress\": \"8.8.8.8\",\r\n  \"MerchantId\": {{MerchantId_CarRental8V2}},\r\n  \"AccountId\": 1173,\r\n  \"BookerCountry\": \"NL\",\r\n  \"ModuleId\" : \"11\"\r\n}"
+            },
+            "url": {
+              "raw": "http://{{base_url}}/pw.axd?pricewatchservice.svc/web/GetPrices",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pw.axd"
+              ],
+              "query": [
+                {
+                  "key": "pricewatchservice.svc/web/GetPrices",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "091d41b6-930f-8937-b6a2-0c5c63bea952",
+          "name": "GetPrices_11_CarRental8V2_Module11",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var assertDescription = \"CheckCurrencyAndHasResult\";",
+                  "",
+                  "responseJSON = JSON.parse(responseBody); ",
+                  "var helpers = eval(globals.getPricesHelper);",
+                  "helpers.logTestCaseInfo(responseJSON);",
+                  "",
+                  "var requestIdNotEmpty = responseJSON.RequestId !== \"\";",
+                  "var currencyValue = \"EUR\";",
+                  "var priceResultsCountNotZero = responseJSON.PriceResults.length > 0",
+                  "",
+                  "tests[assertDescription] = requestIdNotEmpty && currencyValue && priceResultsCountNotZero;",
+                  "",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{auth_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Currency\": \"EUR\",\r\n   \"Pickupdate\": \"{{PickupDate}}\",\r\n  \"Returndate\": \"{{ReturnDate}}\",\r\n  \"PickupLocationId\": {{LocationId_AmsterdamAirport}},\r\n  \"ReturnLocationId\": {{LocationId_AmsterdamAirport}},\r\n  \"IncludeMerchants\": false,\r\n  \"CacheDisabled\": true,\r\n  \"Language\": \"EN\",\r\n  \"ClientIpAddress\": \"8.8.8.8\",\r\n \"MerchantId\": {{MerchantId_CarRental8V2}},\r\n  \"AccountId\": 1173,\r\n  \"BookerCountry\": \"NL\",\r\n  \"ModuleId\" : \"11\"\r\n}"
+            },
+            "url": {
+              "raw": "http://{{base_url}}/pw.axd?pricewatchservice.svc/web/GetPrices",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pw.axd"
+              ],
+              "query": [
+                {
+                  "key": "pricewatchservice.svc/web/GetPrices",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "7a7a86d1-64f9-0109-5b07-f538829c7556",
+          "name": "GetPrices_12_RentalCars",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var assertDescription = \"CheckCurrencyAndHasResult\";",
+                  "",
+                  "responseJSON = JSON.parse(responseBody); ",
+                  "var helpers = eval(globals.getPricesHelper);",
+                  "helpers.logTestCaseInfo(responseJSON);",
+                  "",
+                  "var requestIdNotEmpty = responseJSON.RequestId !== \"\";",
+                  "var currencyValue = \"EUR\";",
+                  "var priceResultsCountNotZero = responseJSON.PriceResults.length > 0",
+                  "",
+                  "tests[assertDescription] = requestIdNotEmpty && currencyValue && priceResultsCountNotZero;",
+                  "",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{auth_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Currency\": \"EUR\",\r\n   \"Pickupdate\": \"{{PickupDate}}\",\r\n  \"Returndate\": \"{{ReturnDate}}\",\r\n  \"PickupLocationId\": {{LocationId_AmsterdamAirport}},\r\n  \"ReturnLocationId\": {{LocationId_AmsterdamAirport}},\r\n  \"IncludeMerchants\": false,\r\n  \"CacheDisabled\": true,\r\n  \"Language\": \"EN\",\r\n  \"ClientIpAddress\": \"8.8.8.8\",\r\n  \"MerchantId\": {{MerchantId_RentalCars}},\r\n  \"AccountId\": 1173,\r\n  \"BookerCountry\": \"NL\",\r\n  \"ModuleId\" : \"11\"\r\n}"
+            },
+            "url": {
+              "raw": "http://{{base_url}}/pw.axd?pricewatchservice.svc/web/GetPrices",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pw.axd"
+              ],
+              "query": [
+                {
+                  "key": "pricewatchservice.svc/web/GetPrices",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "3778007c-73db-648f-ae81-bd3d79c832f3",
+          "name": "GetPrices_13_RentalCars_Module11",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var assertDescription = \"CheckCurrencyAndHasResult\";",
+                  "",
+                  "responseJSON = JSON.parse(responseBody); ",
+                  "var helpers = eval(globals.getPricesHelper);",
+                  "helpers.logTestCaseInfo(responseJSON);",
+                  "",
+                  "var requestIdNotEmpty = responseJSON.RequestId !== \"\";",
+                  "var currencyValue = \"EUR\";",
+                  "var priceResultsCountNotZero = responseJSON.PriceResults.length > 0",
+                  "",
+                  "tests[assertDescription] = requestIdNotEmpty && currencyValue && priceResultsCountNotZero;",
+                  "",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{auth_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Currency\": \"EUR\",\r\n   \"Pickupdate\": \"{{PickupDate}}\",\r\n  \"Returndate\": \"{{ReturnDate}}\",\r\n  \"PickupLocationId\": {{LocationId_AmsterdamAirport}},\r\n  \"ReturnLocationId\": {{LocationId_AmsterdamAirport}},\r\n  \"IncludeMerchants\": false,\r\n  \"CacheDisabled\": true,\r\n  \"Language\": \"EN\",\r\n  \"ClientIpAddress\": \"8.8.8.8\",\r\n  \"MerchantId\": {{MerchantId_RentalCars}},\r\n  \"AccountId\": 1173,\r\n  \"BookerCountry\": \"NL\",\r\n  \"ModuleId\" : \"11\"\r\n}"
+            },
+            "url": {
+              "raw": "http://{{base_url}}/pw.axd?pricewatchservice.svc/web/GetPrices",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pw.axd"
+              ],
+              "query": [
+                {
+                  "key": "pricewatchservice.svc/web/GetPrices",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "fe0932d0-e923-c3cb-2601-31d61082370f",
+          "name": "GetPrices_14_AllMerchants",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var assertDescription = \"CheckCurrencyAndHasResult\";",
+                  "",
+                  "responseJSON = JSON.parse(responseBody); ",
+                  "var helpers = eval(globals.getPricesHelper);",
+                  "helpers.logTestCaseInfo(responseJSON);",
+                  "",
+                  "var requestIdNotEmpty = responseJSON.RequestId !== \"\";",
+                  "var currencyValue = \"EUR\";",
+                  "var priceResultsCountNotZero = responseJSON.PriceResults.length > 0",
+                  "",
+                  "tests[assertDescription] = requestIdNotEmpty && currencyValue && priceResultsCountNotZero;",
+                  "",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{auth_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Currency\": \"EUR\",\r\n   \"Pickupdate\": \"{{PickupDate}}\",\r\n  \"Returndate\": \"{{ReturnDate}}\",\r\n  \"PickupLocationId\": {{LocationId_AmsterdamAirport}},\r\n  \"ReturnLocationId\": {{LocationId_AmsterdamAirport}},\r\n  \"IncludeMerchants\": false,\r\n  \"CacheDisabled\": true,\r\n  \"Language\": \"EN\",\r\n  \"ClientIpAddress\": \"8.8.8.8\",\r\n  \"AccountId\": 1173,\r\n  \"BookerCountry\": \"NL\"\r\n}"
+            },
+            "url": {
+              "raw": "http://{{base_url}}/pw.axd?pricewatchservice.svc/web/GetPrices",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pw.axd"
+              ],
+              "query": [
+                {
+                  "key": "pricewatchservice.svc/web/GetPrices",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "b3a9d2a4-db42-87e4-0782-3ddaf5e761ab",
+          "name": "GetPrices_15_AllMerchants_Module11",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var assertDescription = \"CheckCurrencyAndHasResult\";",
+                  "",
+                  "responseJSON = JSON.parse(responseBody); ",
+                  "var helpers = eval(globals.getPricesHelper);",
+                  "helpers.logTestCaseInfo(responseJSON);",
+                  "",
+                  "var requestIdNotEmpty = responseJSON.RequestId !== \"\";",
+                  "var currencyValue = \"EUR\";",
+                  "var priceResultsCountNotZero = responseJSON.PriceResults.length > 0",
+                  "",
+                  "tests[assertDescription] = requestIdNotEmpty && currencyValue && priceResultsCountNotZero;",
+                  "",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{auth_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Currency\": \"EUR\",\r\n   \"Pickupdate\": \"{{PickupDate}}\",\r\n  \"Returndate\": \"{{ReturnDate}}\",\r\n  \"PickupLocationId\": {{LocationId_AmsterdamAirport}},\r\n  \"ReturnLocationId\": {{LocationId_AmsterdamAirport}},\r\n  \"IncludeMerchants\": false,\r\n  \"CacheDisabled\": true,\r\n  \"Language\": \"EN\",\r\n  \"ClientIpAddress\": \"8.8.8.8\",\r\n  \"AccountId\": 1173,\r\n  \"BookerCountry\": \"NL\",\r\n   \"ModuleId\" : \"11\"\r\n}"
+            },
+            "url": {
+              "raw": "http://{{base_url}}/pw.axd?pricewatchservice.svc/web/GetPrices",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pw.axd"
+              ],
+              "query": [
+                {
+                  "key": "pricewatchservice.svc/web/GetPrices",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "2a96d8a1-64e8-19c2-64eb-0ee1ab669c33",
+      "name": "SaveProfile",
+      "description": "SaveProfile API test cases",
+      "item": [
+        {
+          "_postman_id": "0815bd4d-8ec6-4663-3cc8-b0f779e31e74",
+          "name": "Initialize + SaveProfile_01_HC_AssertProfileDetails",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "\r",
+                  "postman.setGlobalVariable(\"loadProfileHelpers\", function loadProfileHelpers() {\r",
+                  "  let helpers = {};\r",
+                  "    helpers.generateUniqueEmail = function generateUniqueEmail(){\r",
+                  "        var profileTestEmailPrefix = postman.getEnvironmentVariable(\"SaveProfile_TestEmailPrefix\");\r",
+                  "        var profileTestEmailDomain  = postman.getEnvironmentVariable(\"SaveProfile_TestEmailDomain\");\r",
+                  "         var d = (new Date()).toISOString();\r",
+                  "        var tempString = d.replace('-','').replace('-','').replace('T','').replace(':','').replace(':','');\r",
+                  "        var uniqueEmail = profileTestEmailPrefix + \".\" +  tempString.substring(0,14) + profileTestEmailDomain;\r",
+                  "        return uniqueEmail;\r",
+                  "    }\r",
+                  "    helpers.assertObject = function assertObject(expectedObject, actualObject, ignoredIdField){\r",
+                  "         // assert direct properties of the objects and the Fields collection\r",
+                  "        var actualFields;\r",
+                  "        var expectedFields = expectedObject.Fields;\r",
+                  "        var actualFields = actualObject.Fields;\r",
+                  "        if(actualObject === undefined){\r",
+                  "            console.log('Actual object is underfined.');\r",
+                  "            return false;\r",
+                  "        }\r",
+                  "        for(var prop in expectedObject){\r",
+                  "             if(prop === 'Fields') continue; // the Fields collection will be assert separately.\r",
+                  "           \r",
+                  "           if(ignoredIdField && prop === 'Id'){\r",
+                  "                if(expectedObject[prop] === undefined){\r",
+                  "                    console.log('Id field in the response is undefined');\r",
+                  "                    return false;\r",
+                  "                }\r",
+                  "                else{\r",
+                  "                    continue;\r",
+                  "                }\r",
+                  "           }\r",
+                  "          \r",
+                  "            var expectedFieldValue =   expectedObject[prop];  \r",
+                  "            var actualFieldValue = actualObject[prop];\r",
+                  "              \r",
+                  "              if(expectedObject.hasOwnProperty(prop)){\r",
+                  "                  if(expectedFieldValue !== actualFieldValue){\r",
+                  "                      console.log(\"Field \" + prop + \" does not match. Expected: \" + expectedFieldValue + ' actual ' + actualFieldValue);\r",
+                  "                      return false;\r",
+                  "                  }\r",
+                  "              }\r",
+                  "            \r",
+                  "        }\r",
+                  "        \r",
+                  "        var assertFieldsResult = helpers.assertFieldsCollection(expectedFields,actualFields);\r",
+                  "        return assertFieldsResult;\r",
+                  "    }\r",
+                  "    \r",
+                  "    // assert the object contains all properties defined in the expectedFieldsArary\r",
+                  "    helpers.assertSchema = function assertSchema(expectedFieldsArray, actualObject){\r",
+                  "        for(var i in expectedFieldsArray){\r",
+                  "            var prop = expectedFieldsArray[i];\r",
+                  "            if(actualObject[prop] === undefined){\r",
+                  "                console.log(\"Missing field \" + prop + \" in object\");\r",
+                  "                return false;\r",
+                  "            }\r",
+                  "       }\r",
+                  "       return true;\r",
+                  "    }\r",
+                  "\r",
+                  "    helpers.assertProfileSchema = function assertResponseSchema(jsonResponse) {\r",
+                  "        var testPassed = true;\r",
+                  "        var expectedResponseProperties = [\"IsSuccess\",\r",
+                  "                                        \"RequestId\",\r",
+                  "                                        \"Profile\",\r",
+                  "                                        \"Status\"\r",
+                  "                                        ];\r",
+                  "         \r",
+                  "        testPassed  = helpers.assertSchema(expectedResponseProperties,jsonResponse);\r",
+                  "        if(!testPassed) return false;\r",
+                  "\r",
+                  "        var expectedProfileProperties = [\"Id\",\"Fields\",\"Collection\"];\r",
+                  "        testPassed = helpers.assertSchema(expectedProfileProperties,jsonResponse.Profile);\r",
+                  "        if(!testPassed) return false;\r",
+                  "\r",
+                  "        return helpers.assertFieldSchema(jsonResponse.Profile.Fields);\r",
+                  "     \r",
+                  "    }\r",
+                  "\r",
+                  "    helpers.assertFieldSchema = function assertFieldSchema(profileFields){\r",
+                  "        var expectedFields = [\r",
+                  "      \"Email\",\r",
+                  "      \"Firstname\",\r",
+                  "      \"Lastname\",\r",
+                  "      \"Gender\",\r",
+                  "      \"Language\",\r",
+                  "      \"Currency\",\r",
+                  "      \"MailLanguage\",\r",
+                  "      \"Country\",\r",
+                  "      //\"Unsubscribed\",\r",
+                  "      //\"UnsubReason\",\r",
+                  "      //\"SubscrPause\",\r",
+                  "      //\"SubscrPausePeriod\",\r",
+                  "      //\"Testgroup\": \"0\",\r",
+                  "      //\"LatestCountry\": \"Denmark\",\r",
+                  "      //\"AS\": \"0\",\r",
+                  "      //\"ASC\": \"0\",\r",
+                  "      //\"Newsletter\": \"0\",\r",
+                  "      //\"Password\": \"N3NAcF56WGEyVSp1KGw=\",\r",
+                  "      //\"PasswordReset\": \"2\",\r",
+                  "      //\"promoCodes\": \"\",\r",
+                  "      //\"promoCodesActive\": \"jQb348yAfh[pc:activatie10]\",\r",
+                  "      //\"promoCodesUsed\": \"\",\r",
+                  "      //\"LM\": \"0\",\r",
+                  "      //\"UserType\": \"0\",\r",
+                  "      //\"AccountId\": \"0\",\r",
+                  "      \"CompanyName\",\r",
+                  "      \"PriceUpdates\",\r",
+                  "      \"Reactivation\",\r",
+                  "      \"Confirmation\"\r",
+                  "        ]; \r",
+                  "\r",
+                  "        return helpers.assertSchema(expectedFields,profileFields);\r",
+                  "\r",
+                  "    }\r",
+                  "    helpers.assertFieldsCollection = function assertFieldsCollection(expectedFields, actualFields){\r",
+                  "        for(var k in expectedFields){\r",
+                  "            var expectedValue = expectedFields[k];\r",
+                  "            var actualValue = actualFields[k];\r",
+                  "            //console.log('expected field: ' + k + ' value: ' + expectedValue);\r",
+                  "            //console.log('actual value: ' + actualValue);\r",
+                  "            // only direct properties\r",
+                  "              if(expectedFields.hasOwnProperty(k)){\r",
+                  "                  \r",
+                  "                    if(expectedValue !== actualValue){\r",
+                  "                    \r",
+                  "                  console.log(\"Field \" + k + \" does not match. Expected: \" + expectedValue + ' actual ' + actualValue);\r",
+                  "                  return false;\r",
+                  "                }\r",
+                  "              }\r",
+                  "        }\r",
+                  "        return true;\r",
+                  "    \r",
+                  "    }\r",
+                  "    \r",
+                  "    helpers.getSubProfileEntry  = function getSubProfileEntry(profile,collectionName){\r",
+                  "        var collection = profile.Collection;\r",
+                  "        switch(collectionName) {\r",
+                  "        case 'Quotes':\r",
+                  "            return collection.Quotes[0];\r",
+                  "        case 'Orders':\r",
+                  "            return collection.Orders[0];\r",
+                  "        case 'Searches':\r",
+                  "           return collection.Searches[0];\r",
+                  "        case 'Subscriptions':\r",
+                  "           return collection.Subscriptions[0];\r",
+                  "        \r",
+                  "        } \r",
+                  "    }\r",
+                  "    \r",
+                  "    helpers.logTestCaseInfo = function logTestCaseInfo(jsonBody){\r",
+                  "        console.log('Email used in test case: ' + postman.getGlobalVariable(\"SaveProfile_ProfileEmailAddress\"));\r",
+                  "        console.log('LogId: ' + jsonBody.RequestId);\r",
+                  "    }\r",
+                  "    \r",
+                  "    helpers.logUpdateProfileCase  = function logUpdateProfileCase(){\r",
+                  "        console.log('Email used in test case: ' + postman.getGlobalVariable('ProfileEmailForUpdateCase'));\r",
+                  "        console.log('Request Id: ' + responseJSON.RequestId);\r",
+                  "        console.log('Profile Id: ' + actualProfile.Id);\r",
+                  "    }\r",
+                  "    return helpers;\r",
+                  "} + '; loadProfileHelpers();');\r",
+                  "\r",
+                  "var helpers = eval(globals.loadProfileHelpers);\r",
+                  "postman.setGlobalVariable(\"SaveProfile_ProfileEmailAddress\", helpers.generateUniqueEmail());\r",
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var helpers = eval(globals.loadProfileHelpers);\r",
+                  "\r",
+                  "var assertDescription = \"VerifyProfileDetails\";\r",
+                  "var emailAddress = postman.getGlobalVariable(\"SaveProfile_ProfileEmailAddress\");\r",
+                  "var expectedProfile = {\r",
+                  "    \"Id\": \"1619767\",\r",
+                  "    \"Fields\": {\r",
+                  "      \"Email\": emailAddress,\r",
+                  "      \"Firstname\": \"Pricewatch Automation Test - FirstName\",\r",
+                  "      \"Lastname\": \"Pricewatch Automation Test - LastName\",\r",
+                  "      \"Gender\": \"Female\",\r",
+                  "      \"Language\": \"vi\",\r",
+                  "      \"Currency\": \"USD\",\r",
+                  "      \"MailLanguage\": \"vn\",\r",
+                  "      \"Country\": \"VietNam\",\r",
+                  "      \"LatestCountry\" : \"Denmark\",\r",
+                  "      \"CompanyName\" : \"Devinition\",\r",
+                  "    }\r",
+                  "\r",
+                  "};\r",
+                  "var responseJSON = JSON.parse(responseBody); \r",
+                  "\r",
+                  "helpers.logTestCaseInfo(responseJSON);\r",
+                  "\r",
+                  "var actualProfile = responseJSON.Profile;\r",
+                  "var ignoreIdField = true;\r",
+                  "var testPassed = helpers.assertObject(expectedProfile,actualProfile,ignoreIdField)\r",
+                  "\r",
+                  "tests[assertDescription] = testPassed;\r",
+                  "\r",
+                  "postman.setGlobalVariable(\"ProfileEmailForUpdateCase\",emailAddress);\r",
+                  "postman.setGlobalVariable('ProfileIdForUpdateCase',responseJSON.Profile.Id);\r",
+                  "\r",
+                  "postman.clearGlobalVariable(\"SaveProfile_ProfileEmailAddress\");\r",
+                  "\r",
+                  "\r",
+                  "\r",
+                  "\r",
+                  "\r",
+                  "\r",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{auth_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Email\": \"{{SaveProfile_ProfileEmailAddress}}\",\r\n  \"Database\": \"holidaycars\",\r\n  \"ReturnProfile\": \"1\",\r\n  \"Firstname\": \"Pricewatch Automation Test - FirstName\",\r\n  \"Lastname\": \"Pricewatch Automation Test - LastName\",\r\n  \"Gender\": \"Female\",\r\n  \"Language\": \"vi\",\r\n  \"Currency\": \"USD\",\r\n  \"MailLanguage\": \"vn\",\r\n  \"Country\": \"VietNam\",\r\n  \"LatestCountry\" : \"Denmark\",\r\n  \"CompanyName\" : \"Devinition\",\r\n   \"Collections\": [\r\n   \t {\r\n\t      \"CollectionId\": \"Quotes\",\r\n\t      \"SubProfileId\":\"43214\",\r\n\t       \"CarCategory\": \"Luxury\",\r\n            \"Price\": \"1234\",\r\n            \"Brand\": \"test brand\",\r\n            \"PickupDateTime\": \"2017-08-15 18:00:00\",\r\n            \"PickupLocation\": \"Amsertdam Airport\",\r\n            \"ReturnDateTime\": \"2017-08-19 18:00:00\",\r\n            \"ReturnLocation\": \"Test Location\",\r\n            \"CarName\": \"Lexus\",\r\n            \"CarImage\": \"\",\r\n            \"QuoteDateTime\": \"2017-08-15 18:00:00\",\r\n            \"ASCUrl\": \"\",\r\n            \"Language\": \"EN\",\r\n            \"Email\": \"van.thi20@vn.devinition.com\"\r\n\t    },\r\n\t    {\r\n\t    \t\"CollectionId\": \"Orders\",\r\n\t        \"SubProfileId\":\"1234568\",\r\n\t        \"PickupCityName\":\"Amsterdam\",\r\n\t        \"PickupDateTime\": \"2017-04-18 10:00:00\",\r\n\t        \"ReturnDateTime\": \"2017-04-20 10:00:00\",\r\n            \"ReservationDateTime\": \"\",\r\n            \"PickupLocation\": \"Ansertdam Airport\",\r\n            \"OrderId\": \"124343\",\r\n            \"PickupCountryName\": \"Neitherlands\",\r\n            \"Brand\": \"Test 1\",\r\n            \"CarCategory\": \"Test Category\",\r\n            \"OrderStatus\": \"\",\r\n            \"Language\": \"EN\",\r\n            \"PickupLocationId\": \"23\",\r\n            \"SupplierId\": \"12\",\r\n            \"PickupCountryCode\": \"NL\"\r\n\t    },\r\n        {\r\n\t      \"CollectionId\": \"Subscriptions\",\r\n\t      \"SubProfileId\":\"1234569\",\r\n\t      \"Name\": \"Van Test Subscription\",\r\n\t       \"SubscriptionDateTime\": \"2017-04-10 10:00:00\",\r\n            \"SubscriptionPauseEnd\": \"\",\r\n            \"SendConfirmation\": \"0\",\r\n            \"OptOut\": \"1\",\r\n            \"OptOutReason\": \"Test reason\",\r\n            \"Email\": \"test@test.com\"\r\n          }\r\n\t ]\r\n}"
+            },
+            "url": {
+              "raw": "http://{{base_url}}/pw.axd?pricewatchservice.svc/web/SaveProfile",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pw.axd"
+              ],
+              "query": [
+                {
+                  "key": "pricewatchservice.svc/web/SaveProfile",
+                  "value": null
+                }
+              ]
+            },
+            "description": "03"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "da50963d-6ab2-20e1-e3cb-63fe75a566a2",
+          "name": "SaveProfile_02_HC_AssertSubProfile_Order",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "postman.clearGlobalVariable(\"SaveProfile_ProfileEmailAddress\");\r",
+                  "var helpers = eval(globals.loadProfileHelpers);\r",
+                  "postman.setGlobalVariable(\"SaveProfile_ProfileEmailAddress\", helpers.generateUniqueEmail());\r",
+                  "\r",
+                  "\r",
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var helpers = eval(globals.loadProfileHelpers);\r",
+                  "\r",
+                  "var assertDescription = \"VerifySubProfile_Order\";\r",
+                  "\r",
+                  "var expectedSubProfile = {\r",
+                  "          \"Id\": \"1732814\",\r",
+                  "          \"Fields\": {\r",
+                  "            \"ReturnDateTime\": \"2017-04-20 10:00:00\",\r",
+                  "            \"PickupDateTime\": \"2017-04-18 10:00:00\",\r",
+                  "            \"ReservationDateTime\": \"\",\r",
+                  "            \"PickupLocation\": \"Ansertdam Airport\",\r",
+                  "            \"SubId\": \"1234568\",\r",
+                  "            \"OrderId\": \"124343\",\r",
+                  "            \"PickupCityName\": \"Amsterdam\",\r",
+                  "            \"PickupCountryName\": \"Neitherlands\",\r",
+                  "            \"Brand\": \"Test 1\",\r",
+                  "            \"CarCategory\": \"Test Category\",\r",
+                  "            \"OrderStatus\": \"\",\r",
+                  "            \"Language\": \"EN\",\r",
+                  "            \"PickupLocationId\": \"23\",\r",
+                  "            \"SupplierId\": \"12\",\r",
+                  "            \"PickupCountryCode\": \"NL\"\r",
+                  "          }\r",
+                  "        };\r",
+                  "var responseJSON = JSON.parse(responseBody); \r",
+                  "helpers.logTestCaseInfo(responseJSON);\r",
+                  "var profile = responseJSON.Profile;\r",
+                  "var actualSubProfile = helpers.getSubProfileEntry(profile,'Orders');\r",
+                  "var testPassed = helpers.assertObject(expectedSubProfile,actualSubProfile,true);\r",
+                  "\r",
+                  "tests[assertDescription] = testPassed;\r",
+                  "\r",
+                  "postman.clearGlobalVariable(\"SaveProfile_ProfileEmailAddress\");\r",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{auth_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Email\": \"{{SaveProfile_ProfileEmailAddress}}\",\r\n  \"Database\": \"holidaycars\",\r\n  \"ReturnProfile\": \"1\",\r\n  \"Firstname\": \"Pricewatch Automation Test - FirstName\",\r\n  \"Lastname\": \"Pricewatch Automation Test - LastName\",\r\n  \"Gender\": \"Female\",\r\n  \"Language\": \"vi\",\r\n  \"Currency\": \"USD\",\r\n  \"MailLanguage\": \"vn\",\r\n  \"Country\": \"VietNam\",\r\n  \"LatestCountry\" : \"Denmark\",\r\n  \"CompanyName\" : \"Devinition\",\r\n   \"Collections\": [\r\n   \t    {\r\n\t    \t\"CollectionId\": \"Orders\",\r\n\t        \"SubProfileId\":\"1234568\",\r\n\t        \"PickupCityName\":\"Amsterdam\",\r\n\t        \"PickupDateTime\": \"2017-04-18 10:00:00\",\r\n\t        \"ReturnDateTime\": \"2017-04-20 10:00:00\",\r\n            \"ReservationDateTime\": \"\",\r\n            \"PickupLocation\": \"Ansertdam Airport\",\r\n            \"OrderId\": \"124343\",\r\n            \"PickupCountryName\": \"Neitherlands\",\r\n            \"Brand\": \"Test 1\",\r\n            \"CarCategory\": \"Test Category\",\r\n            \"OrderStatus\": \"\",\r\n            \"Language\": \"EN\",\r\n            \"PickupLocationId\": \"23\",\r\n            \"SupplierId\": \"12\",\r\n            \"PickupCountryCode\": \"NL\"\r\n\t    }\r\n\t ]\r\n}"
+            },
+            "url": {
+              "raw": "http://{{base_url}}/pw.axd?pricewatchservice.svc/web/SaveProfile",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pw.axd"
+              ],
+              "query": [
+                {
+                  "key": "pricewatchservice.svc/web/SaveProfile",
+                  "value": null
+                }
+              ]
+            },
+            "description": "03"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "e06a8fab-27fc-0a61-9501-bdbc92db5275",
+          "name": "SaveProfile_03_HC_AssertSubProfile_Quote",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "postman.clearGlobalVariable(\"SaveProfile_ProfileEmailAddress\");\r",
+                  "var helpers = eval(globals.loadProfileHelpers);\r",
+                  "postman.setGlobalVariable(\"SaveProfile_ProfileEmailAddress\", helpers.generateUniqueEmail());\r",
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var helpers = eval(globals.loadProfileHelpers);\r",
+                  "\r",
+                  "var assertDescription = \"VerifySubProfile_Quote\";\r",
+                  "\r",
+                  "var expectedSubProfile = {\r",
+                  " \t      \"Id\":\"43214\",\r",
+                  "\t      \"Fields\": {\r",
+                  "            \"CarCategory\": \"Luxury\",\r",
+                  "            \"Price\": \"1234\",\r",
+                  "            \"Brand\": \"test brand\",\r",
+                  "            \"PickupDateTime\": \"2017-08-15 18:00:00\",\r",
+                  "            \"PickupLocation\": \"Amsertdam Airport\",\r",
+                  "            \"ReturnDateTime\": \"2017-08-19 18:00:00\",\r",
+                  "            \"ReturnLocation\": \"Test Location\",\r",
+                  "            \"CarName\": \"Lexus\",\r",
+                  "            \"CarImage\": \"\",\r",
+                  "            \"SubId\": \"43214\",\r",
+                  "            \"QuoteDateTime\": \"2017-08-15 18:00:00\",\r",
+                  "            \"ASCUrl\": \"\",\r",
+                  "            \"Language\": \"EN\",\r",
+                  "            \"Email\": \"test@test.com\"\r",
+                  "          }\r",
+                  "};\r",
+                  "\r",
+                  "var responseJSON = JSON.parse(responseBody); \r",
+                  "helpers.logTestCaseInfo(responseJSON);\r",
+                  "var profile = responseJSON.Profile;\r",
+                  "var actualSubProfile = helpers.getSubProfileEntry(profile,'Quotes');\r",
+                  "var testPassed = helpers.assertObject(expectedSubProfile,actualSubProfile,true);\r",
+                  "\r",
+                  "tests[assertDescription] = testPassed;\r",
+                  "\r",
+                  "postman.clearGlobalVariable(\"SaveProfile_ProfileEmailAddress\");\r",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{auth_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Email\": \"{{SaveProfile_ProfileEmailAddress}}\",\r\n  \"Database\": \"holidaycars\",\r\n  \"ReturnProfile\": \"1\",\r\n  \"Firstname\": \"Pricewatch Automation Test - FirstName\",\r\n  \"Lastname\": \"Pricewatch Automation Test - LastName\",\r\n  \"Gender\": \"Female\",\r\n  \"Language\": \"vi\",\r\n  \"Currency\": \"USD\",\r\n  \"MailLanguage\": \"vn\",\r\n  \"Country\": \"VietNam\",\r\n  \"LatestCountry\" : \"Denmark\",\r\n  \"CompanyName\" : \"Devinition\",\r\n   \"Collections\": [\r\n   \t {\r\n\t      \"CollectionId\": \"Quotes\",\r\n\t      \"SubProfileId\":\"43214\",\r\n\t       \"CarCategory\": \"Luxury\",\r\n            \"Price\": \"1234\",\r\n            \"Brand\": \"test brand\",\r\n            \"PickupDateTime\": \"2017-08-15 18:00:00\",\r\n            \"PickupLocation\": \"Amsertdam Airport\",\r\n            \"ReturnDateTime\": \"2017-08-19 18:00:00\",\r\n            \"ReturnLocation\": \"Test Location\",\r\n            \"CarName\": \"Lexus\",\r\n            \"CarImage\": \"\",\r\n            \"QuoteDateTime\": \"2017-08-15 18:00:00\",\r\n            \"ASCUrl\": \"\",\r\n            \"Language\": \"EN\",\r\n            \"Email\": \"test@test.com\"\r\n\t    }\r\n\t ]\r\n}"
+            },
+            "url": {
+              "raw": "http://{{base_url}}/pw.axd?pricewatchservice.svc/web/SaveProfile",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pw.axd"
+              ],
+              "query": [
+                {
+                  "key": "pricewatchservice.svc/web/SaveProfile",
+                  "value": null
+                }
+              ]
+            },
+            "description": "03"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "0e9a27c1-d8c0-9946-408d-ab62b12e9bed",
+          "name": "SaveProfile_04_HC_AssertSubProfile_Subscription",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "postman.clearGlobalVariable(\"SaveProfile_ProfileEmailAddress\");\r",
+                  "var helpers = eval(globals.loadProfileHelpers);\r",
+                  "postman.setGlobalVariable(\"SaveProfile_ProfileEmailAddress\", helpers.generateUniqueEmail());\r",
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var helpers = eval(globals.loadProfileHelpers);\r",
+                  "\r",
+                  "var assertDescription = \"VerifySubProfile_Subscription\";\r",
+                  "\r",
+                  "var expectedSubProfile = {\r",
+                  " \t  \"Id\": \"1732881\",\r",
+                  "          \"Fields\": {\r",
+                  "            \"SubId\": \"1234569\",\r",
+                  "            \"Name\": \"Test Subscription\",\r",
+                  "            \"SubscriptionDateTime\": \"2017-04-10 10:00:00\",\r",
+                  "            \"SubscriptionPauseEnd\": \"\",\r",
+                  "            \"SendConfirmation\": \"0\",\r",
+                  "            \"OptOut\": \"1\",\r",
+                  "            \"OptOutReason\": \"Test reason\",\r",
+                  "            \"Email\": \"test@test.com\"\r",
+                  "          }\r",
+                  "}\r",
+                  "\r",
+                  "\r",
+                  "var responseJSON = JSON.parse(responseBody); \r",
+                  "helpers.logTestCaseInfo(responseJSON);\r",
+                  "var profile = responseJSON.Profile;\r",
+                  "var actualSubProfile = helpers.getSubProfileEntry(profile,'Subscriptions');\r",
+                  "var testPassed = helpers.assertObject(expectedSubProfile,actualSubProfile,true);\r",
+                  "\r",
+                  "tests[assertDescription] = testPassed;\r",
+                  "\r",
+                  "postman.clearGlobalVariable(\"SaveProfile_ProfileEmailAddress\");\r",
+                  "\r",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{auth_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Email\": \"{{SaveProfile_ProfileEmailAddress}}\",\r\n  \"Database\": \"holidaycars\",\r\n  \"ReturnProfile\": \"1\",\r\n  \"Firstname\": \"Pricewatch Automation Test - FirstName\",\r\n  \"Lastname\": \"Pricewatch Automation Test - LastName\",\r\n  \"Gender\": \"Female\",\r\n  \"Language\": \"vi\",\r\n  \"Currency\": \"USD\",\r\n  \"MailLanguage\": \"vn\",\r\n  \"Country\": \"VietNam\",\r\n  \"LatestCountry\" : \"Denmark\",\r\n  \"CompanyName\" : \"Devinition\",\r\n   \"Collections\": [\r\n   \t    {\r\n\t      \"CollectionId\": \"Subscriptions\",\r\n\t      \"SubProfileId\":\"1234569\",\r\n\t      \"Name\": \"Test Subscription\",\r\n\t       \"SubscriptionDateTime\": \"2017-04-10 10:00:00\",\r\n            \"SubscriptionPauseEnd\": \"\",\r\n            \"SendConfirmation\": \"0\",\r\n            \"OptOut\": \"1\",\r\n            \"OptOutReason\": \"Test reason\",\r\n            \"Email\": \"test@test.com\"\r\n          }\r\n\t ]\r\n}"
+            },
+            "url": {
+              "raw": "http://{{base_url}}/pw.axd?pricewatchservice.svc/web/SaveProfile",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pw.axd"
+              ],
+              "query": [
+                {
+                  "key": "pricewatchservice.svc/web/SaveProfile",
+                  "value": null
+                }
+              ]
+            },
+            "description": "03"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "ef507f9c-f07e-a2e4-c4e5-ce3fe1d5dd2e",
+          "name": "SaveProfile_05_HC_AssertSubProfile_Search",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "postman.clearGlobalVariable(\"SaveProfile_ProfileEmailAddress\");\r",
+                  "var helpers = eval(globals.loadProfileHelpers);\r",
+                  "postman.setGlobalVariable(\"SaveProfile_ProfileEmailAddress\", helpers.generateUniqueEmail());\r",
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var helpers = eval(globals.loadProfileHelpers);\r",
+                  "\r",
+                  "var assertDescription = \"VerifySubProfile_Search\";\r",
+                  "\r",
+                  "var expectedSubProfile = {\r",
+                  "\"Id\" : \"127474\",\r",
+                  "\"Fields\": {\r",
+                  " \t      \"PickupDateTime\": \"2017-08-15 18:00:00\",\r",
+                  "            \"PickupLocation\": \"Amsterdam Airport\",\r",
+                  "            \"PickupLocationId\": \"123\",\r",
+                  "            \"ReturnDateTime\": \"2017-08-22 18:00:00\",\r",
+                  "            \"ReturnLocation\": \"Amsterdam Airport\",\r",
+                  "            \"ReturnLocationId\": \"123\",\r",
+                  "            \"SearchUrl\": \"test URL\",\r",
+                  "            \"SearchDateTime\": \"\",\r",
+                  "            \"CountryCode\": \"NL\",\r",
+                  "            \"Language\": \"EN\"\r",
+                  "}};\r",
+                  "\r",
+                  "\r",
+                  "var responseJSON = JSON.parse(responseBody); \r",
+                  "helpers.logTestCaseInfo(responseJSON);\r",
+                  "var profile = responseJSON.Profile;\r",
+                  "var actualSubProfile = helpers.getSubProfileEntry(profile,'Searches');\r",
+                  "var testPassed = helpers.assertObject(expectedSubProfile,actualSubProfile,true);\r",
+                  "\r",
+                  "tests[assertDescription] = testPassed;\r",
+                  "\r",
+                  "postman.clearGlobalVariable(\"SaveProfile_ProfileEmailAddress\");\r",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{auth_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Email\": \"{{SaveProfile_ProfileEmailAddress}}\",\r\n  \"Database\": \"holidaycars\",\r\n  \"ReturnProfile\": \"1\",\r\n  \"Firstname\": \"Pricewatch Automation Test - FirstName\",\r\n  \"Lastname\": \"Pricewatch Automation Test - LastName\",\r\n  \"Gender\": \"Female\",\r\n  \"Language\": \"vi\",\r\n  \"Currency\": \"USD\",\r\n  \"MailLanguage\": \"vn\",\r\n  \"Country\": \"VietNam\",\r\n  \"LatestCountry\" : \"Denmark\",\r\n  \"CompanyName\" : \"Devinition\",\r\n   \"Collections\": [\r\n   \t{\r\n\t        \"CollectionId\": \"Searches\",\r\n\t        \"PickupDateTime\": \"2017-08-15 18:00:00\",\r\n            \"PickupLocation\": \"Amsterdam Airport\",\r\n            \"PickupLocationId\": \"123\",\r\n            \"ReturnDateTime\": \"2017-08-22 18:00:00\",\r\n            \"ReturnLocation\": \"Amsterdam Airport\",\r\n            \"ReturnLocationId\": \"123\",\r\n            \"SearchUrl\": \"test URL\",\r\n            \"SearchDateTime\": \"\",\r\n            \"CountryCode\": \"NL\",\r\n            \"Language\": \"EN\"\r\n\t    }\r\n\t ]\r\n}"
+            },
+            "url": {
+              "raw": "http://{{base_url}}/pw.axd?pricewatchservice.svc/web/SaveProfile",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pw.axd"
+              ],
+              "query": [
+                {
+                  "key": "pricewatchservice.svc/web/SaveProfile",
+                  "value": null
+                }
+              ]
+            },
+            "description": "03"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "f2ea4b1d-f265-2455-bc99-7bd5f8025ca9",
+          "name": "SaveProfile_06_AssertResponseSchema",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "postman.clearGlobalVariable(\"SaveProfile_ProfileEmailAddress\");\r",
+                  "var helpers = eval(globals.loadProfileHelpers);\r",
+                  "postman.setGlobalVariable(\"SaveProfile_ProfileEmailAddress\", helpers.generateUniqueEmail());\r",
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var helpers = eval(globals.loadProfileHelpers);\r",
+                  "\r",
+                  "var assertDescription = \"VerifyResponseSchema\";\r",
+                  "\r",
+                  "\r",
+                  "var responseJSON = JSON.parse(responseBody); \r",
+                  "helpers.logTestCaseInfo(responseJSON);\r",
+                  "var testPassed = helpers.assertProfileSchema(responseJSON);\r",
+                  "\r",
+                  "tests[assertDescription] = testPassed;\r",
+                  "\r",
+                  "        \r",
+                  "postman.clearGlobalVariable(\"SaveProfile_ProfileEmailAddress\");\r",
+                  "\r",
+                  "\r",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{auth_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Email\": \"{{SaveProfile_ProfileEmailAddress}}\",\r\n  \"Database\": \"holidaycars\",\r\n  \"ReturnProfile\": \"1\",\r\n  \"Firstname\": \"Pricewatch Automation Test - FirstName\",\r\n  \"Lastname\": \"Pricewatch Automation Test - LastName\",\r\n  \"Gender\": \"Female\",\r\n  \"Language\": \"vi\",\r\n  \"Currency\": \"USD\",\r\n  \"MailLanguage\": \"vn\",\r\n  \"Country\": \"VietNam\",\r\n  \"LatestCountry\" : \"Denmark\",\r\n  \"CompanyName\" : \"Devinition\",\r\n   \"Collections\": [\r\n   \t {\r\n\t      \"CollectionId\": \"Quotes\",\r\n\t      \"SubProfileId\":\"43214\",\r\n\t       \"CarCategory\": \"Luxury\",\r\n            \"Price\": \"1234\",\r\n            \"Brand\": \"test brand\",\r\n            \"PickupDateTime\": \"2017-08-15 18:00:00\",\r\n            \"PickupLocation\": \"Amsertdam Airport\",\r\n            \"ReturnDateTime\": \"2017-08-19 18:00:00\",\r\n            \"ReturnLocation\": \"Test Location\",\r\n            \"CarName\": \"Lexus\",\r\n            \"CarImage\": \"\",\r\n            \"QuoteDateTime\": \"2017-08-15 18:00:00\",\r\n            \"ASCUrl\": \"\",\r\n            \"Language\": \"EN\",\r\n            \"Email\": \"van.thi20@vn.devinition.com\"\r\n\t    },\r\n\t    {\r\n\t    \t\"CollectionId\": \"Orders\",\r\n\t        \"SubProfileId\":\"1234568\",\r\n\t        \"PickupCityName\":\"Amsterdam\",\r\n\t        \"PickupDateTime\": \"2017-04-18 10:00:00\",\r\n\t        \"ReturnDateTime\": \"2017-04-20 10:00:00\",\r\n            \"ReservationDateTime\": \"\",\r\n            \"PickupLocation\": \"Ansertdam Airport\",\r\n            \"OrderId\": \"124343\",\r\n            \"PickupCountryName\": \"Neitherlands\",\r\n            \"Brand\": \"Test 1\",\r\n            \"CarCategory\": \"Test Category\",\r\n            \"OrderStatus\": \"\",\r\n            \"Language\": \"EN\",\r\n            \"PickupLocationId\": \"23\",\r\n            \"SupplierId\": \"12\",\r\n            \"PickupCountryCode\": \"NL\"\r\n\t    },\r\n        {\r\n\t      \"CollectionId\": \"Subscriptions\",\r\n\t      \"SubProfileId\":\"1234569\",\r\n\t      \"Name\": \"Van Test Subscription\",\r\n\t       \"SubscriptionDateTime\": \"2017-04-10 10:00:00\",\r\n            \"SubscriptionPauseEnd\": \"\",\r\n            \"SendConfirmation\": \"0\",\r\n            \"OptOut\": \"1\",\r\n            \"OptOutReason\": \"Test reason\",\r\n            \"Email\": \"test@test.com\"\r\n          }\r\n\t ]\r\n}"
+            },
+            "url": {
+              "raw": "http://{{base_url}}/pw.axd?pricewatchservice.svc/web/SaveProfile",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pw.axd"
+              ],
+              "query": [
+                {
+                  "key": "pricewatchservice.svc/web/SaveProfile",
+                  "value": null
+                }
+              ]
+            },
+            "description": "03"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "74203676-459e-9124-17cb-1a0069726e4d",
+          "name": "SaveProfile_07_UpdateProfile_DependCase01",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "\r",
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var helpers = eval(globals.loadProfileHelpers);\r",
+                  "\r",
+                  "var assertDescription = \"AssertProfileHasBeenUpdated\";\r",
+                  "var expectedProfile = {\r",
+                  "    \"Id\": postman.getGlobalVariable('ProfileIdForUpdateCase'),\r",
+                  "    \"Fields\": {\r",
+                  "      \"Email\": postman.getGlobalVariable('ProfileEmailForUpdateCase'),\r",
+                  "      \"Firstname\": \"Pricewatch Automation Test - Updated FirstName\",\r",
+                  "      \"Lastname\": \"Pricewatch Automation Test - Updated LastName\",\r",
+                  "      \"Gender\": \"Female\",\r",
+                  "      \"Language\": \"vi\",\r",
+                  "      \"Currency\": \"USD\",\r",
+                  "      \"MailLanguage\": \"vn\",\r",
+                  "      \"Country\": \"Netherlands\",\r",
+                  "      \"LatestCountry\" : \"Denmark\",\r",
+                  "      \"CompanyName\" : \"BookingMonkey\"\r",
+                  "    }\r",
+                  "\r",
+                  "};\r",
+                  "\r",
+                  "var responseJSON = JSON.parse(responseBody); \r",
+                  "var actualProfile = responseJSON.Profile;\r",
+                  "helpers.logUpdateProfileCase();\r",
+                  "\r",
+                  "\r",
+                  "var ignoreIdField = true;\r",
+                  "var testPassed = helpers.assertObject(expectedProfile,actualProfile)\r",
+                  "\r",
+                  "tests[assertDescription] = testPassed;\r",
+                  "\r",
+                  "\r",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{auth_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Email\": \"{{ProfileEmailForUpdateCase}}\",\r\n  \"Database\": \"holidaycars\",\r\n  \"ReturnProfile\": \"1\",\r\n  \"Firstname\": \"Pricewatch Automation Test - Updated FirstName\",\r\n  \"Lastname\": \"Pricewatch Automation Test - Updated LastName\",\r\n  \"Gender\": \"Female\",\r\n  \"Language\": \"vi\",\r\n  \"Currency\": \"USD\",\r\n  \"MailLanguage\": \"vn\",\r\n  \"Country\": \"Netherlands\",\r\n  \"LatestCountry\" : \"Denmark\",\r\n  \"CompanyName\" : \"BookingMonkey\",\r\n   \"Collections\": [\r\n   \t \r\n\t ]\r\n}"
+            },
+            "url": {
+              "raw": "http://{{base_url}}/pw.axd?pricewatchservice.svc/web/SaveProfile",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pw.axd"
+              ],
+              "query": [
+                {
+                  "key": "pricewatchservice.svc/web/SaveProfile",
+                  "value": null
+                }
+              ]
+            },
+            "description": "03"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "73e2127d-22eb-c1a2-d7d7-9d6f5bdeb4fc",
+      "name": "SaveProfile_Simple",
+      "description": "",
+      "item": [
+        {
+          "_postman_id": "151a34db-ee24-96be-695d-2952b60f065b",
+          "name": "Initialize + SaveProfile_A01_Create_ReturnNoProfile",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "\r",
+                  "postman.setGlobalVariable(\"loadProfileHelpers\", function loadProfileHelpers() {\r",
+                  "  let helpers = {};\r",
+                  "    helpers.generateUniqueEmail = function generateUniqueEmail(){\r",
+                  "        var profileTestEmailPrefix = postman.getEnvironmentVariable(\"SaveProfile_TestEmailPrefix\");\r",
+                  "        var profileTestEmailDomain  = postman.getEnvironmentVariable(\"SaveProfile_TestEmailDomain\");\r",
+                  "         var d = (new Date()).toISOString();\r",
+                  "        var tempString = d.replace('-','').replace('-','').replace('T','').replace(':','').replace(':','');\r",
+                  "        var uniqueEmail = profileTestEmailPrefix + \".\" +  tempString.substring(0,14) + profileTestEmailDomain;\r",
+                  "        return uniqueEmail;\r",
+                  "    }\r",
+                  "    helpers.assertObject = function assertObject(expectedObject, actualObject, ignoredIdField){\r",
+                  "         // assert direct properties of the objects and the Fields collection\r",
+                  "        var actualFields;\r",
+                  "        var expectedFields = expectedObject.Fields;\r",
+                  "        var actualFields = actualObject.Fields;\r",
+                  "        if(actualObject === undefined){\r",
+                  "            console.log('Actual object is underfined.');\r",
+                  "            return false;\r",
+                  "        }\r",
+                  "        for(var prop in expectedObject){\r",
+                  "             if(prop === 'Fields') continue; // the Fields collection will be assert separately.\r",
+                  "           \r",
+                  "           if(ignoredIdField && prop === 'Id'){\r",
+                  "                if(expectedObject[prop] === undefined){\r",
+                  "                    console.log('Id field in the response is undefined');\r",
+                  "                    return false;\r",
+                  "                }\r",
+                  "                else{\r",
+                  "                    continue;\r",
+                  "                }\r",
+                  "           }\r",
+                  "          \r",
+                  "            var expectedFieldValue =   expectedObject[prop];  \r",
+                  "            var actualFieldValue = actualObject[prop];\r",
+                  "              \r",
+                  "              if(expectedObject.hasOwnProperty(prop)){\r",
+                  "                  if(expectedFieldValue !== actualFieldValue){\r",
+                  "                      console.log(\"Field \" + prop + \" does not match. Expected: \" + expectedFieldValue + ' actual ' + actualFieldValue);\r",
+                  "                      return false;\r",
+                  "                  }\r",
+                  "              }\r",
+                  "            \r",
+                  "        }\r",
+                  "        \r",
+                  "        var assertFieldsResult = helpers.assertFieldsCollection(expectedFields,actualFields);\r",
+                  "        return assertFieldsResult;\r",
+                  "    }\r",
+                  "    \r",
+                  "    // assert the object contains all properties defined in the expectedFieldsArary\r",
+                  "    helpers.assertSchema = function assertSchema(expectedFieldsArray, actualObject){\r",
+                  "        for(var i in expectedFieldsArray){\r",
+                  "            var prop = expectedFieldsArray[i];\r",
+                  "            if(actualObject[prop] === undefined){\r",
+                  "                console.log(\"Missing field \" + prop + \" in object\");\r",
+                  "                return false;\r",
+                  "            }\r",
+                  "       }\r",
+                  "       return true;\r",
+                  "    }\r",
+                  "\r",
+                  "    helpers.assertProfileSchema = function assertResponseSchema(jsonResponse) {\r",
+                  "        var testPassed = true;\r",
+                  "        var expectedResponseProperties = [\"IsSuccess\",\r",
+                  "                                        \"RequestId\",\r",
+                  "                                        \"Profile\",\r",
+                  "                                        \"Status\"\r",
+                  "                                        ];\r",
+                  "         \r",
+                  "        testPassed  = helpers.assertSchema(expectedResponseProperties,jsonResponse);\r",
+                  "        if(!testPassed) return false;\r",
+                  "\r",
+                  "        var expectedProfileProperties = [\"Id\",\"Fields\",\"Collection\"];\r",
+                  "        testPassed = helpers.assertSchema(expectedProfileProperties,jsonResponse.Profile);\r",
+                  "        if(!testPassed) return false;\r",
+                  "\r",
+                  "        return helpers.assertFieldSchema(jsonResponse.Profile.Fields);\r",
+                  "     \r",
+                  "    }\r",
+                  "\r",
+                  "    helpers.assertFieldSchema = function assertFieldSchema(profileFields){\r",
+                  "        var expectedFields = [\r",
+                  "      \"Email\",\r",
+                  "      \"Firstname\",\r",
+                  "      \"Lastname\",\r",
+                  "      \"Gender\",\r",
+                  "      \"Language\",\r",
+                  "      \"Currency\",\r",
+                  "      \"MailLanguage\",\r",
+                  "      \"Country\",\r",
+                  "      //\"Unsubscribed\",\r",
+                  "      //\"UnsubReason\",\r",
+                  "      //\"SubscrPause\",\r",
+                  "      //\"SubscrPausePeriod\",\r",
+                  "      //\"Testgroup\": \"0\",\r",
+                  "      //\"LatestCountry\": \"Denmark\",\r",
+                  "      //\"AS\": \"0\",\r",
+                  "      //\"ASC\": \"0\",\r",
+                  "      //\"Newsletter\": \"0\",\r",
+                  "      //\"Password\": \"N3NAcF56WGEyVSp1KGw=\",\r",
+                  "      //\"PasswordReset\": \"2\",\r",
+                  "      //\"promoCodes\": \"\",\r",
+                  "      //\"promoCodesActive\": \"jQb348yAfh[pc:activatie10]\",\r",
+                  "      //\"promoCodesUsed\": \"\",\r",
+                  "      //\"LM\": \"0\",\r",
+                  "      //\"UserType\": \"0\",\r",
+                  "      //\"AccountId\": \"0\",\r",
+                  "      \"CompanyName\",\r",
+                  "      \"PriceUpdates\",\r",
+                  "      \"Reactivation\",\r",
+                  "      \"Confirmation\"\r",
+                  "        ]; \r",
+                  "\r",
+                  "        return helpers.assertSchema(expectedFields,profileFields);\r",
+                  "\r",
+                  "    }\r",
+                  "    helpers.assertFieldsCollection = function assertFieldsCollection(expectedFields, actualFields){\r",
+                  "        for(var k in expectedFields){\r",
+                  "            var expectedValue = expectedFields[k];\r",
+                  "            var actualValue = actualFields[k];\r",
+                  "            //console.log('expected field: ' + k + ' value: ' + expectedValue);\r",
+                  "            //console.log('actual value: ' + actualValue);\r",
+                  "            // only direct properties\r",
+                  "              if(expectedFields.hasOwnProperty(k)){\r",
+                  "                  \r",
+                  "                    if(expectedValue !== actualValue){\r",
+                  "                    \r",
+                  "                  console.log(\"Field \" + k + \" does not match. Expected: \" + expectedValue + ' actual ' + actualValue);\r",
+                  "                  return false;\r",
+                  "                }\r",
+                  "              }\r",
+                  "        }\r",
+                  "        return true;\r",
+                  "    \r",
+                  "    }\r",
+                  "    \r",
+                  "    helpers.getSubProfileEntry  = function getSubProfileEntry(profile,collectionName){\r",
+                  "        var collection = profile.Collection;\r",
+                  "        switch(collectionName) {\r",
+                  "        case 'Quotes':\r",
+                  "            return collection.Quotes[0];\r",
+                  "        case 'Orders':\r",
+                  "            return collection.Orders[0];\r",
+                  "        case 'Searches':\r",
+                  "           return collection.Searches[0];\r",
+                  "        case 'Subscriptions':\r",
+                  "           return collection.Subscriptions[0];\r",
+                  "        \r",
+                  "        } \r",
+                  "    }\r",
+                  "    \r",
+                  "    helpers.logTestCaseInfo = function logTestCaseInfo(jsonBody){\r",
+                  "        console.log('Email used in test case: ' + postman.getGlobalVariable(\"SaveProfile_ProfileEmailAddress\"));\r",
+                  "        console.log('LogId: ' + jsonBody.RequestId);\r",
+                  "    }\r",
+                  "    \r",
+                  "    helpers.logUpdateProfileCase  = function logUpdateProfileCase(){\r",
+                  "        console.log('Email used in test case: ' + postman.getGlobalVariable('ProfileEmailForUpdateCase'));\r",
+                  "        console.log('Request Id: ' + responseJSON.RequestId);\r",
+                  "        console.log('Profile Id: ' + actualProfile.Id);\r",
+                  "    }\r",
+                  "    return helpers;\r",
+                  "} + '; loadProfileHelpers();');\r",
+                  "\r",
+                  "var helpers = eval(globals.loadProfileHelpers);\r",
+                  "postman.setGlobalVariable(\"SaveProfile_ProfileEmailAddress\", helpers.generateUniqueEmail());"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var helpers = eval(globals.loadProfileHelpers);\r",
+                  "var responseJSON = JSON.parse(responseBody); \r",
+                  "helpers.logTestCaseInfo(responseJSON);\r",
+                  "\r",
+                  "tests[\"Status code is 200 (actual: \" + responseCode.code + \")\"] = responseCode.code === 200;\r",
+                  "tests[\"Profile Create - IsSuccess:true (actual: \" + responseJSON.IsSuccess + \")\"] = responseJSON.IsSuccess == true;\r",
+                  "tests[\"Profile Create - Status:created (actual: \" + responseJSON.Status + \")\"] = responseJSON.Status == \"created\";"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{auth_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Email\": \"{{SaveProfile_ProfileEmailAddress}}\",\r\n  \"Database\": \"holidaycars\"\r\n}"
+            },
+            "url": {
+              "raw": "http://{{base_url}}/pw.axd?pricewatchservice.svc/web/SaveProfile",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pw.axd"
+              ],
+              "query": [
+                {
+                  "key": "pricewatchservice.svc/web/SaveProfile",
+                  "value": null
+                }
+              ]
+            },
+            "description": "We evaluate the response of a simple create-profile-request"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "276907ad-3abb-990c-f2ba-e1279246f578",
+          "name": "SaveProfile_A02_Update_ReturnNoProfile",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var helpers = eval(globals.loadProfileHelpers);\r",
+                  "var responseJSON = JSON.parse(responseBody); \r",
+                  "helpers.logTestCaseInfo(responseJSON);\r",
+                  "\r",
+                  "tests[\"Status code is 200 (actual: \" + responseCode.code + \")\"] = responseCode.code === 200;\r",
+                  "tests[\"Profile Create - IsSuccess:true (actual: \" + responseJSON.IsSuccess + \")\"] = responseJSON.IsSuccess == true;\r",
+                  "tests[\"Profile Create - Status:updated (actual: \" + responseJSON.Status + \")\"] = responseJSON.Status == \"updated\";"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{auth_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Email\": \"{{SaveProfile_ProfileEmailAddress}}\",\r\n  \"Firstname\": \"Pricewatch Automation Test - FirstName - Update\",\r\n  \"Lastname\": \"Pricewatch Automation Test - LastName\",\r\n  \"Gender\": \"Female\",\r\n  \"Language\": \"vi\",\r\n  \"Currency\": \"USD\",\r\n  \"MailLanguage\": \"vn\",\r\n  \"Country\": \"VietNam\",\r\n  \"LatestCountry\" : \"Denmark\",\r\n  \"CompanyName\" : \"Devinition\",\r\n  \"Database\": \"holidaycars\"\r\n}"
+            },
+            "url": {
+              "raw": "http://{{base_url}}/pw.axd?pricewatchservice.svc/web/SaveProfile",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pw.axd"
+              ],
+              "query": [
+                {
+                  "key": "pricewatchservice.svc/web/SaveProfile",
+                  "value": null
+                }
+              ]
+            },
+            "description": "We try to update the profile"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "d897e8e7-77f4-4ef6-b292-c8e092307195",
+          "name": "SaveProfile_A03_CreateSubProfile_ReturnNoProfile",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var helpers = eval(globals.loadProfileHelpers);\r",
+                  "var responseJSON = JSON.parse(responseBody); \r",
+                  "helpers.logTestCaseInfo(responseJSON);\r",
+                  "\r",
+                  "tests[\"Status code is 200 (actual: \" + responseCode.code + \")\"] = responseCode.code === 200;\r",
+                  "tests[\"Profile Create - IsSuccess:true (actual: \" + responseJSON.IsSuccess + \")\"] = responseJSON.IsSuccess == true;\r",
+                  "tests[\"Profile Create - Status:updated (actual: \" + responseJSON.Status + \")\"] = responseJSON.Status == \"updated\";"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{auth_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Email\": \"{{SaveProfile_ProfileEmailAddress}}\",\r\n  \"Database\": \"holidaycars\",\r\n  \"Collections\": [\r\n   \t    {\r\n\t    \t\"CollectionId\": \"Orders\",\r\n\t        \"SubProfileId\":\"1234568\",\r\n\t        \"PickupCityName\":\"Amsterdam\",\r\n\t        \"PickupDateTime\": \"2017-04-18 10:00:00\",\r\n\t        \"ReturnDateTime\": \"2017-04-20 10:00:00\",\r\n            \"ReservationDateTime\": \"\",\r\n            \"PickupLocation\": \"Ansertdam Airport\",\r\n            \"OrderId\": \"124343\",\r\n            \"PickupCountryName\": \"Neitherlands\",\r\n            \"Brand\": \"Test 1\",\r\n            \"CarCategory\": \"Test Category\",\r\n            \"OrderStatus\": \"\",\r\n            \"Language\": \"EN\",\r\n            \"PickupLocationId\": \"23\",\r\n            \"SupplierId\": \"12\",\r\n            \"PickupCountryCode\": \"NL\"\r\n\t    }\r\n\t ]\r\n}"
+            },
+            "url": {
+              "raw": "http://{{base_url}}/pw.axd?pricewatchservice.svc/web/SaveProfile",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pw.axd"
+              ],
+              "query": [
+                {
+                  "key": "pricewatchservice.svc/web/SaveProfile",
+                  "value": null
+                }
+              ]
+            },
+            "description": "We create a subprofile to an existing profile"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "ad3ff937-c0ed-1cbd-1de2-30026c5083d7",
+          "name": "SaveProfile_A04_ReturnProfile",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var helpers = eval(globals.loadProfileHelpers);\r",
+                  "\r",
+                  "var assertDescription = \"VerifySubProfile_Order\";\r",
+                  "\r",
+                  "var expectedSubProfile = {\r",
+                  "          \"Id\": \"1732814\",\r",
+                  "          \"Fields\": {\r",
+                  "            \"ReturnDateTime\": \"2017-04-20 10:00:00\",\r",
+                  "            \"PickupDateTime\": \"2017-04-18 10:00:00\",\r",
+                  "            \"ReservationDateTime\": \"\",\r",
+                  "            \"PickupLocation\": \"Ansertdam Airport\",\r",
+                  "            \"SubId\": \"1234568\",\r",
+                  "            \"OrderId\": \"124343\",\r",
+                  "            \"PickupCityName\": \"Amsterdam\",\r",
+                  "            \"PickupCountryName\": \"Neitherlands\",\r",
+                  "            \"Brand\": \"Test 1\",\r",
+                  "            \"CarCategory\": \"Test Category\",\r",
+                  "            \"OrderStatus\": \"\",\r",
+                  "            \"Language\": \"EN\",\r",
+                  "            \"PickupLocationId\": \"23\",\r",
+                  "            \"SupplierId\": \"12\",\r",
+                  "            \"PickupCountryCode\": \"NL\"\r",
+                  "          }\r",
+                  "        };\r",
+                  "        \r",
+                  "var responseJSON = JSON.parse(responseBody); \r",
+                  "helpers.logTestCaseInfo(responseJSON);\r",
+                  "var profile = responseJSON.Profile;\r",
+                  "var actualSubProfile = helpers.getSubProfileEntry(profile,'Orders');\r",
+                  "var testPassed = helpers.assertObject(expectedSubProfile,actualSubProfile,true);\r",
+                  "\r",
+                  "\r",
+                  "tests[\"Status code is 200 (actual: \" + responseCode.code + \")\"] = responseCode.code === 200;\r",
+                  "tests[\"Profile - IsSuccess:true (actual: \" + responseJSON.IsSuccess + \")\"] = responseJSON.IsSuccess == true;\r",
+                  "tests[\"Profile Returned - Status:updated (actual: \" + responseJSON.Status + \")\"] = responseJSON.Status == \"updated\";\r",
+                  "tests[\"Profile Returned - Expected profile\"] = testPassed;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{auth_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Email\": \"{{SaveProfile_ProfileEmailAddress}}\",\r\n  \"Database\": \"holidaycars\",\r\n  \"ReturnProfile\": \"1\"\r\n}"
+            },
+            "url": {
+              "raw": "http://{{base_url}}/pw.axd?pricewatchservice.svc/web/SaveProfile",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pw.axd"
+              ],
+              "query": [
+                {
+                  "key": "pricewatchservice.svc/web/SaveProfile",
+                  "value": null
+                }
+              ]
+            },
+            "description": "We evaluate the success of the subprofile created in the previous step (A03)"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "802ff5c2-a572-09b1-dee1-c112b4c97b0c",
+          "name": "SaveProfile_A05_UpdateSubProfile_ReturnNoProfile",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var helpers = eval(globals.loadProfileHelpers);\r",
+                  "var responseJSON = JSON.parse(responseBody); \r",
+                  "helpers.logTestCaseInfo(responseJSON);\r",
+                  "\r",
+                  "tests[\"Status code is 200 (actual: \" + responseCode.code + \")\"] = responseCode.code === 200;\r",
+                  "tests[\"Profile Create - IsSuccess:true (actual: \" + responseJSON.IsSuccess + \")\"] = responseJSON.IsSuccess == true;\r",
+                  "tests[\"Profile Create - Status:updated (actual: \" + responseJSON.Status + \")\"] = responseJSON.Status == \"updated\";"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{auth_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Email\": \"{{SaveProfile_ProfileEmailAddress}}\",\r\n  \"Database\": \"holidaycars\",\r\n  \"Collections\": [\r\n   \t    {\r\n\t    \t\"CollectionId\": \"Orders\",\r\n\t        \"SubProfileId\":\"1234568\",\r\n\t        \"PickupCityName\":\"Amsterdam\",\r\n\t        \"PickupDateTime\": \"2017-04-18 10:00:00\",\r\n\t        \"ReturnDateTime\": \"2017-04-20 10:00:00\",\r\n            \"ReservationDateTime\": \"\",\r\n            \"PickupLocation\": \"Amsterdam Airport\",\r\n            \"OrderId\": \"124343\",\r\n            \"PickupCountryName\": \"Netherlands\",\r\n            \"Brand\": \"Test 1\",\r\n            \"CarCategory\": \"Test Category\",\r\n            \"OrderStatus\": \"\",\r\n            \"Language\": \"EN\",\r\n            \"PickupLocationId\": \"23\",\r\n            \"SupplierId\": \"12\",\r\n            \"PickupCountryCode\": \"NL\"\r\n\t    }\r\n\t ]\r\n}"
+            },
+            "url": {
+              "raw": "http://{{base_url}}/pw.axd?pricewatchservice.svc/web/SaveProfile",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pw.axd"
+              ],
+              "query": [
+                {
+                  "key": "pricewatchservice.svc/web/SaveProfile",
+                  "value": null
+                }
+              ]
+            },
+            "description": "We update a subprofile on an existing profile"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "5a0d80b7-f83a-2146-24fa-d2b74a6f0fce",
+          "name": "SaveProfile_A06_ReturnProfile + CleanUp",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var helpers = eval(globals.loadProfileHelpers);\r",
+                  "\r",
+                  "var assertDescription = \"VerifySubProfile_Order\";\r",
+                  "\r",
+                  "var expectedSubProfile = {\r",
+                  "          \"Id\": \"1732814\",\r",
+                  "          \"Fields\": {\r",
+                  "            \"ReturnDateTime\": \"2017-04-20 10:00:00\",\r",
+                  "            \"PickupDateTime\": \"2017-04-18 10:00:00\",\r",
+                  "            \"ReservationDateTime\": \"\",\r",
+                  "            \"PickupLocation\": \"Amsterdam Airport\",\r",
+                  "            \"SubId\": \"1234568\",\r",
+                  "            \"OrderId\": \"124343\",\r",
+                  "            \"PickupCityName\": \"Amsterdam\",\r",
+                  "            \"PickupCountryName\": \"Netherlands\",\r",
+                  "            \"Brand\": \"Test 1\",\r",
+                  "            \"CarCategory\": \"Test Category\",\r",
+                  "            \"OrderStatus\": \"\",\r",
+                  "            \"Language\": \"EN\",\r",
+                  "            \"PickupLocationId\": \"23\",\r",
+                  "            \"SupplierId\": \"12\",\r",
+                  "            \"PickupCountryCode\": \"NL\"\r",
+                  "          }\r",
+                  "        };\r",
+                  "        \r",
+                  "var responseJSON = JSON.parse(responseBody); \r",
+                  "helpers.logTestCaseInfo(responseJSON);\r",
+                  "var profile = responseJSON.Profile;\r",
+                  "var actualSubProfile = helpers.getSubProfileEntry(profile,'Orders');\r",
+                  "var testPassed = helpers.assertObject(expectedSubProfile,actualSubProfile,true);\r",
+                  "\r",
+                  "tests[\"Status code is 200 (actual: \" + responseCode.code + \")\"] = responseCode.code === 200;\r",
+                  "tests[\"Profile - IsSuccess:true (actual: \" + responseJSON.IsSuccess + \")\"] = responseJSON.IsSuccess == true;\r",
+                  "tests[\"Profile Returned - Status:updated (actual: \" + responseJSON.Status + \")\"] = responseJSON.Status == \"updated\";\r",
+                  "tests[\"Profile Returned - Expected profile\"] = testPassed;\r",
+                  "\r",
+                  "// CleanUp\r",
+                  "postman.clearGlobalVariable(\"SaveProfile_ProfileEmailAddress\");"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{auth_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Email\": \"{{SaveProfile_ProfileEmailAddress}}\",\r\n  \"Database\": \"holidaycars\",\r\n  \"ReturnProfile\": \"1\"\r\n}"
+            },
+            "url": {
+              "raw": "http://{{base_url}}/pw.axd?pricewatchservice.svc/web/SaveProfile",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pw.axd"
+              ],
+              "query": [
+                {
+                  "key": "pricewatchservice.svc/web/SaveProfile",
+                  "value": null
+                }
+              ]
+            },
+            "description": "We evaluate the success of the subprofile updated in the previous step (A05)"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "12e162e3-877b-863b-5e6e-b0b1c55d8fc8",
+          "name": "SaveProfile_B01_Create_ReturnProfile ",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "postman.clearGlobalVariable(\"SaveProfile_ProfileEmailAddress\");\r",
+                  "var helpers = eval(globals.loadProfileHelpers);\r",
+                  "postman.setGlobalVariable(\"SaveProfile_ProfileEmailAddress\", helpers.generateUniqueEmail());\r",
+                  "\r",
+                  "\r",
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var helpers = eval(globals.loadProfileHelpers);\r",
+                  "var responseJSON = JSON.parse(responseBody); \r",
+                  "helpers.logTestCaseInfo(responseJSON);\r",
+                  "\r",
+                  "tests[\"Status code is 200 (actual: \" + responseCode.code + \")\"] = responseCode.code === 200;\r",
+                  "tests[\"Profile Create - IsSuccess:true (actual: \" + responseJSON.IsSuccess + \")\"] = responseJSON.IsSuccess == true;\r",
+                  "tests[\"Profile Create - Status:created (actual: \" + responseJSON.Status + \")\"] = responseJSON.Status == \"created\";"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{auth_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Email\": \"{{SaveProfile_ProfileEmailAddress}}\",\r\n  \"Database\": \"holidaycars\",\r\n  \"ReturnProfile\": \"1\"\r\n}"
+            },
+            "url": {
+              "raw": "http://{{base_url}}/pw.axd?pricewatchservice.svc/web/SaveProfile",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pw.axd"
+              ],
+              "query": [
+                {
+                  "key": "pricewatchservice.svc/web/SaveProfile",
+                  "value": null
+                }
+              ]
+            },
+            "description": "We evaluate the response of a simple create-profile-request with the profile returned in the response"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "fc15938d-94a5-3a7a-e82c-b64db9937542",
+          "name": "SaveProfile_B02_Update_ReturnProfile",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var helpers = eval(globals.loadProfileHelpers);\r",
+                  "var responseJSON = JSON.parse(responseBody); \r",
+                  "helpers.logTestCaseInfo(responseJSON);\r",
+                  "\r",
+                  "tests[\"Status code is 200 (actual: \" + responseCode.code + \")\"] = responseCode.code === 200;\r",
+                  "tests[\"Profile Updated - IsSuccess:true (actual: \" + responseJSON.IsSuccess + \")\"] = responseJSON.IsSuccess == true;\r",
+                  "tests[\"Profile Updated - Status:updated (actual: \" + responseJSON.Status + \")\"] = responseJSON.Status == \"updated\";"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{auth_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Email\": \"{{SaveProfile_ProfileEmailAddress}}\",\r\n  \"Firstname\": \"Pricewatch Automation Test - FirstName - Update\",\r\n  \"Lastname\": \"Pricewatch Automation Test - LastName\",\r\n  \"Gender\": \"Female\",\r\n  \"Language\": \"vi\",\r\n  \"Currency\": \"USD\",\r\n  \"MailLanguage\": \"vn\",\r\n  \"Country\": \"VietNam\",\r\n  \"LatestCountry\" : \"Denmark\",\r\n  \"CompanyName\" : \"Devinition\",\r\n  \"Database\": \"holidaycars\",\r\n  \"ReturnProfile\": \"1\"\r\n}"
+            },
+            "url": {
+              "raw": "http://{{base_url}}/pw.axd?pricewatchservice.svc/web/SaveProfile",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pw.axd"
+              ],
+              "query": [
+                {
+                  "key": "pricewatchservice.svc/web/SaveProfile",
+                  "value": null
+                }
+              ]
+            },
+            "description": "We evaluate the response of a simple update-profile-request with the profile returned in the response"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "47385567-1d25-36e2-4323-ce5870fa5294",
+          "name": "SaveProfile_B03_CreateSubProfile_ReturnProfile",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var helpers = eval(globals.loadProfileHelpers);\r",
+                  "\r",
+                  "var expectedSubProfile = {\r",
+                  "          \"Id\": \"1732814\",\r",
+                  "          \"Fields\": {\r",
+                  "            \"ReturnDateTime\": \"2017-04-20 10:00:00\",\r",
+                  "            \"PickupDateTime\": \"2017-04-18 10:00:00\",\r",
+                  "            \"ReservationDateTime\": \"\",\r",
+                  "            \"PickupLocation\": \"Ansertdam Airport\",\r",
+                  "            \"SubId\": \"1234568\",\r",
+                  "            \"OrderId\": \"124343\",\r",
+                  "            \"PickupCityName\": \"Amsterdam\",\r",
+                  "            \"PickupCountryName\": \"Neitherlands\",\r",
+                  "            \"Brand\": \"Test 1\",\r",
+                  "            \"CarCategory\": \"Test Category\",\r",
+                  "            \"OrderStatus\": \"\",\r",
+                  "            \"Language\": \"EN\",\r",
+                  "            \"PickupLocationId\": \"23\",\r",
+                  "            \"SupplierId\": \"12\",\r",
+                  "            \"PickupCountryCode\": \"NL\"\r",
+                  "          }\r",
+                  "        };\r",
+                  "        \r",
+                  "var responseJSON = JSON.parse(responseBody); \r",
+                  "helpers.logTestCaseInfo(responseJSON);\r",
+                  "var profile = responseJSON.Profile;\r",
+                  "var actualSubProfile = helpers.getSubProfileEntry(profile,'Orders');\r",
+                  "var testPassed = helpers.assertObject(expectedSubProfile,actualSubProfile,true);\r",
+                  "\r",
+                  "tests[\"Status code is 200 (actual: \" + responseCode.code + \")\"] = responseCode.code === 200;\r",
+                  "tests[\"SubProfile Created - IsSuccess:true (actual: \" + responseJSON.IsSuccess + \")\"] = responseJSON.IsSuccess == true;\r",
+                  "tests[\"SubProfile Created\"] = testPassed;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{auth_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Email\": \"{{SaveProfile_ProfileEmailAddress}}\",\r\n  \"Database\": \"holidaycars\",\r\n  \"ReturnProfile\": \"1\",\r\n  \"Collections\": [\r\n   \t    {\r\n\t    \t\"CollectionId\": \"Orders\",\r\n\t        \"SubProfileId\":\"1234568\",\r\n\t        \"PickupCityName\":\"Amsterdam\",\r\n\t        \"PickupDateTime\": \"2017-04-18 10:00:00\",\r\n\t        \"ReturnDateTime\": \"2017-04-20 10:00:00\",\r\n            \"ReservationDateTime\": \"\",\r\n            \"PickupLocation\": \"Ansertdam Airport\",\r\n            \"OrderId\": \"124343\",\r\n            \"PickupCountryName\": \"Neitherlands\",\r\n            \"Brand\": \"Test 1\",\r\n            \"CarCategory\": \"Test Category\",\r\n            \"OrderStatus\": \"\",\r\n            \"Language\": \"EN\",\r\n            \"PickupLocationId\": \"23\",\r\n            \"SupplierId\": \"12\",\r\n            \"PickupCountryCode\": \"NL\"\r\n\t    }\r\n\t ]\r\n}"
+            },
+            "url": {
+              "raw": "http://{{base_url}}/pw.axd?pricewatchservice.svc/web/SaveProfile",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pw.axd"
+              ],
+              "query": [
+                {
+                  "key": "pricewatchservice.svc/web/SaveProfile",
+                  "value": null
+                }
+              ]
+            },
+            "description": "We evaluate the response of a simple create-subprofile-request with the profile returned in the response"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "758b2a47-62b6-08de-841d-2ec541124b63",
+          "name": "SaveProfile_B04_UpdateSubProfile_ReturnProfile + CleanUp",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var helpers = eval(globals.loadProfileHelpers);\r",
+                  "\r",
+                  "var expectedSubProfile = {\r",
+                  "          \"Id\": \"1732814\",\r",
+                  "          \"Fields\": {\r",
+                  "            \"ReturnDateTime\": \"2017-04-20 10:00:00\",\r",
+                  "            \"PickupDateTime\": \"2017-04-18 10:00:00\",\r",
+                  "            \"ReservationDateTime\": \"\",\r",
+                  "            \"PickupLocation\": \"Amsterdam Airport\",\r",
+                  "            \"SubId\": \"1234568\",\r",
+                  "            \"OrderId\": \"124343\",\r",
+                  "            \"PickupCityName\": \"Amsterdam\",\r",
+                  "            \"PickupCountryName\": \"Netherlands\",\r",
+                  "            \"Brand\": \"Test 1\",\r",
+                  "            \"CarCategory\": \"Test Category\",\r",
+                  "            \"OrderStatus\": \"\",\r",
+                  "            \"Language\": \"EN\",\r",
+                  "            \"PickupLocationId\": \"23\",\r",
+                  "            \"SupplierId\": \"12\",\r",
+                  "            \"PickupCountryCode\": \"NL\"\r",
+                  "          }\r",
+                  "        };\r",
+                  "        \r",
+                  "var responseJSON = JSON.parse(responseBody); \r",
+                  "helpers.logTestCaseInfo(responseJSON);\r",
+                  "var profile = responseJSON.Profile;\r",
+                  "var actualSubProfile = helpers.getSubProfileEntry(profile,'Orders');\r",
+                  "var testPassed = helpers.assertObject(expectedSubProfile,actualSubProfile,true);\r",
+                  "\r",
+                  "tests[\"Status code is 200 (actual: \" + responseCode.code + \")\"] = responseCode.code === 200;\r",
+                  "tests[\"SubProfile Updated - IsSuccess:true (actual: \" + responseJSON.IsSuccess + \")\"] = responseJSON.IsSuccess == true;\r",
+                  "tests[\"SubProfile Updated\"] = testPassed;\r",
+                  "\r",
+                  "postman.clearGlobalVariable(\"SaveProfile_ProfileEmailAddress\");"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{auth_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Email\": \"{{SaveProfile_ProfileEmailAddress}}\",\r\n  \"Database\": \"holidaycars\",\r\n  \"ReturnProfile\": \"1\",\r\n  \"Collections\": [\r\n   \t    {\r\n\t    \t\"CollectionId\": \"Orders\",\r\n\t        \"SubProfileId\":\"1234568\",\r\n\t        \"PickupCityName\":\"Amsterdam\",\r\n\t        \"PickupDateTime\": \"2017-04-18 10:00:00\",\r\n\t        \"ReturnDateTime\": \"2017-04-20 10:00:00\",\r\n            \"ReservationDateTime\": \"\",\r\n            \"PickupLocation\": \"Amsterdam Airport\",\r\n            \"OrderId\": \"124343\",\r\n            \"PickupCountryName\": \"Netherlands\",\r\n            \"Brand\": \"Test 1\",\r\n            \"CarCategory\": \"Test Category\",\r\n            \"OrderStatus\": \"\",\r\n            \"Language\": \"EN\",\r\n            \"PickupLocationId\": \"23\",\r\n            \"SupplierId\": \"12\",\r\n            \"PickupCountryCode\": \"NL\"\r\n\t    }\r\n\t ]\r\n}"
+            },
+            "url": {
+              "raw": "http://{{base_url}}/pw.axd?pricewatchservice.svc/web/SaveProfile",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pw.axd"
+              ],
+              "query": [
+                {
+                  "key": "pricewatchservice.svc/web/SaveProfile",
+                  "value": null
+                }
+              ]
+            },
+            "description": "We evaluate the response of a simple update-subprofile-request with the profile returned in the response"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "c8d67a79-88aa-4b6e-881c-e1ebbc08e629",
+          "name": "SaveProfile_C01_HasError",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var helpers = eval(globals.loadProfileHelpers);\r",
+                  "\r",
+                  "var responseJSON = JSON.parse(responseBody); \r",
+                  "helpers.logTestCaseInfo(responseJSON);\r",
+                  "\r",
+                  "// In this test case the body is malformed, this should return a message stating that an error occurred, but with status 200\r",
+                  "\r",
+                  "tests[\"Status code is 200 (actual: \" + responseCode.code + \")\"] = responseCode.code === 200;\r",
+                  "tests[\"Error - IsSuccess:false (actual: \" + responseJSON.IsSuccess + \")\"] = responseJSON.IsSuccess == false;\r",
+                  "tests[\"Error - HasError:true (actual: \" + responseJSON.HasError + \")\"] = responseJSON.HasError == true;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{auth_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Email\": \"{{SaveProfile_ProfileEmailAddress}}\",\r\n  \"Database\": \"holidaycars\"\r\n  \"ReturnProfile\": \"1\",\r\n}"
+            },
+            "url": {
+              "raw": "http://{{base_url}}/pw.axd?pricewatchservice.svc/web/SaveProfile",
+              "protocol": "http",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pw.axd"
+              ],
+              "query": [
+                {
+                  "key": "pricewatchservice.svc/web/SaveProfile",
+                  "value": null
+                }
+              ]
+            },
+            "description": "We evaluate the response of a simple create-subprofile-request with a malformed body"
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "d9c181f4-5540-4d0b-a3c7-992d1058d731",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "b19467e5-e06d-4717-a523-4498fd46b74b",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}

@@ -2729,14 +2729,7 @@
             "description": "We evaluate the response of a simple create-subprofile-request with a malformed body"
           },
           "response": []
-        }
-      ]
-    },
-    {
-      "_postman_id": "6892dbdd-f775-4a28-8bf4-9c5bb723aed9",
-      "name": "VanTest",
-      "description": "",
-      "item": [
+        },
         {
           "_postman_id": "be504f3d-e519-4975-b505-7334f15f88d8",
           "name": "SaveProfile_C01_HasError Copy",
@@ -2797,6 +2790,12 @@
           "response": []
         }
       ]
+    },
+    {
+      "_postman_id": "6892dbdd-f775-4a28-8bf4-9c5bb723aed9",
+      "name": "VanTest",
+      "description": "",
+      "item": []
     }
   ],
   "event": [
